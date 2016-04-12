@@ -22,7 +22,34 @@ namespace PracticasLambda
         }
         static void Main(string[] args)
         {
+            var documentos = new List<Documento>();
+            for (int i = 0; i < 10; i++)
+            {
+                documentos.Add(GenerarDocumentoAleatorioCon5Firmantes());
+            }
+            var documentosConMayores = documentos.FindAll((Documento doc) =>
+            {
+                bool contieneMayor = false;
+                foreach (var persona in doc.Firmantes)
+                {
+                    if (persona.Edad >= 18) contieneMayor = true;
+                }
+                return contieneMayor;
+            });
         }
+        void escribirDocumentosConsola (List<Documento> documentos)
+        {
+            string resultado = "";
+            foreach (var documento in documentos)
+            {
+                resultado += "\n\nDocumento: \nTitulo: " + documento.Titulo + "\nCuerpo: " + documento.Cuerpo + "Firmantes: ";
+                foreach (var firmante in documento.Firmantes)
+                {
+                    resultado += "\nNombre: " + firmante.Nombre + "\nFirma: " + firmante.Firma + "\nEdad" + firmante.Edad.ToString();
+                }
+            }
+        }
+        /* funcion que devuelve si el documento tiene un firmante mayor
         static bool FirmanteMayor (Documento documento)
         {
             bool contieneMayor = false;
@@ -34,8 +61,9 @@ namespace PracticasLambda
                 }
             }
             return contieneMayor; 
-        }
-        Documento GenerarDocumentoAleatorioCon5Firmantes()
+        }*/
+        #region Aleatorios
+        static Documento GenerarDocumentoAleatorioCon5Firmantes()
         {
             var documento = new Documento();
             documento.Titulo = GenerarStringAleatorio();
@@ -48,7 +76,7 @@ namespace PracticasLambda
             documento.Firmantes = firmantes;
             return documento;
         }
-        Firmante GenerarFirmanteAleatorio()
+        static Firmante GenerarFirmanteAleatorio()
         {
             var firmante = new Firmante();
             firmante.Nombre = GenerarStringAleatorio();
@@ -57,7 +85,7 @@ namespace PracticasLambda
             firmante.Edad = random.Next(10, 70);
             return firmante;
         }
-        string GenerarStringAleatorio()
+        static string GenerarStringAleatorio()
         {
             var random = new Random(); //random que voy a usar en toda la funcion
             string stringAleatorio = ""; //el nuevo string que voy a generar (return)
@@ -72,5 +100,6 @@ namespace PracticasLambda
             }
             return stringAleatorio;
         }
+        #endregion
     }
 }
