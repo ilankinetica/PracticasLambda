@@ -38,8 +38,14 @@ namespace PracticasLambda
         Documento GenerarDocumentoAleatorioCon5Firmantes()
         {
             var documento = new Documento();
-            var aleatorio = new Random();
-            
+            documento.Titulo = GenerarStringAleatorio();
+            documento.Cuerpo = GenerarStringAleatorio();
+            var firmantes = new List<Firmante>();
+            for (int i = 0; i < 5; i++)
+            {
+                firmantes.Add(GenerarFirmanteAleatorio());
+            }
+            documento.Firmantes = firmantes;
             return documento;
         }
         Firmante GenerarFirmanteAleatorio()
