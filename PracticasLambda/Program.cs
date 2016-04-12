@@ -28,27 +28,8 @@ namespace PracticasLambda
             Console.Write("\n----- ----- -----");
             Console.ReadLine();
         }
-        static void escribeDocumentosConFirmantesMayores ()
-        {
-            var documentos = new List<Documento>();
-            for (int i = 0; i< 10; i++)
-            {
-                documentos.Add(GenerarDocumentoAleatorioCon5Firmantes());
-            }
-            var documentosConMayores = new List<Documento>();
-            var lDocumentosConMayores = documentos.FindAll((Documento doc) =>
-            {
-                bool contieneMayor = false;
-
-                foreach (var persona in doc.Firmantes)
-                {
-                    if (persona.Edad >= 18) documentosConMayores.Add(doc);
-                }
-                return contieneMayor;
-            });
-            Console.Write(escribirDocumentosConsola(documentosConMayores));
-        }
-        static string escribirDocumentosConsola (List<Documento> documentos)
+        #region Escribe en la Consola
+        static string escribirDocumentosConsola(List<Documento> documentos)
         {
             string resultado = "";
             foreach (var documento in documentos)
@@ -62,6 +43,34 @@ namespace PracticasLambda
             }
             return resultado;
         }
+        static void escribeDocumentosConFirmantesMayores ()
+        {
+            //Carga de datos inicial
+            var documentos = new List<Documento>();
+            for (int i = 0; i< 10; i++)
+            {
+                documentos.Add(GenerarDocumentoAleatorioCon5Firmantes());
+            }
+            //
+            var documentosConMayores = new List<Documento>();
+            var lDocumentosConMayores = documentos.FindAll((Documento doc) =>
+            {
+                bool contieneMayor = false;
+
+                foreach (var persona in doc.Firmantes)
+                {
+                    if (persona.Edad >= 18) documentosConMayores.Add(doc);
+                }
+                return contieneMayor;
+            });
+            Console.Write(escribirDocumentosConsola(documentosConMayores));
+        }
+        public void EscribeDocumentosConTituloConA()
+        {
+            var documentos = new List<Documento>();
+
+        }
+        #endregion
         #region Aleatorios
         static Documento GenerarDocumentoAleatorioCon5Firmantes()
         {
