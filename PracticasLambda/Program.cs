@@ -45,10 +45,10 @@ namespace PracticasLambda
         Firmante GenerarFirmanteAleatorio()
         {
             var firmante = new Firmante();
-            var aleatorio = new Random();
-            firmante.Nombre = aleatorio.Next(0, 100).ToString();
-            firmante.Firma = aleatorio.Next(0, 100).ToString();
-            firmante.Edad = aleatorio.Next(10, 70);
+            firmante.Nombre = GenerarStringAleatorio();
+            firmante.Firma = GenerarStringAleatorio();
+            var random = new Random();
+            firmante.Edad = random.Next(10, 70);
             return firmante;
         }
         string GenerarStringAleatorio()
