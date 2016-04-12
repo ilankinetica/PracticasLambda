@@ -38,7 +38,8 @@ namespace PracticasLambda
         Documento GenerarDocumentoAleatorioCon5Firmantes()
         {
             var documento = new Documento();
-
+            var aleatorio = new Random();
+            
             return documento;
         }
         Firmante GenerarFirmanteAleatorio()
@@ -49,6 +50,21 @@ namespace PracticasLambda
             firmante.Firma = aleatorio.Next(0, 100).ToString();
             firmante.Edad = aleatorio.Next(10, 70);
             return firmante;
+        }
+        string GenerarStringAleatorio()
+        {
+            var random = new Random(); //random que voy a usar en toda la funcion
+            string stringAleatorio = ""; //el nuevo string que voy a generar (return)
+            string caracteres = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; //los caracters que puede llevar
+            int cantCaracteres = caracteres.Length; //el numero de caracteres que uso
+            char letra; //la letra que voy a agregar a mi nueva palabra
+            int cantStringAleatorio = random.Next(1,10); //el maximo de letras que le voy a poner a mi nueva palabra
+            for (int i = 0; i < cantStringAleatorio; i++)
+            {
+                letra = caracteres[random.Next(cantCaracteres)];
+                stringAleatorio += letra.ToString();
+            }
+            return stringAleatorio;
         }
     }
 }
