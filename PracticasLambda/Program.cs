@@ -23,8 +23,15 @@ namespace PracticasLambda
         public static Random random = new Random();
         static void Main(string[] args)
         {
+            Console.Write("MUESTRO DOCUMENTOS CON POR LO MENOS UN FIRMANTE MAYOR A 18 AÑOS DE EDAD\n\n");
+            escribeDocumentosConFirmantesMayores();
+            Console.Write("\n----- ----- -----");
+            Console.ReadLine();
+        }
+        static void escribeDocumentosConFirmantesMayores ()
+        {
             var documentos = new List<Documento>();
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i< 10; i++)
             {
                 documentos.Add(GenerarDocumentoAleatorioCon5Firmantes());
             }
@@ -32,7 +39,7 @@ namespace PracticasLambda
             var lDocumentosConMayores = documentos.FindAll((Documento doc) =>
             {
                 bool contieneMayor = false;
-                
+
                 foreach (var persona in doc.Firmantes)
                 {
                     if (persona.Edad >= 18) documentosConMayores.Add(doc);
@@ -40,18 +47,18 @@ namespace PracticasLambda
                 return contieneMayor;
             });
             Console.Write(escribirDocumentosConsola(documentosConMayores));
-            Console.ReadLine();
         }
         static string escribirDocumentosConsola (List<Documento> documentos)
         {
             string resultado = "";
             foreach (var documento in documentos)
             {
-                resultado += "\n\nDocumento: \nTitulo: " + documento.Titulo + "\nCuerpo: " + documento.Cuerpo + "\nFirmantes: ";
+                resultado += "\n\nDocumento: \nTitulo: " + documento.Titulo + "\nCuerpo: " + documento.Cuerpo + "\nFirmantes: \n";
                 foreach (var firmante in documento.Firmantes)
                 {
-                    resultado += "\nNombre: " + firmante.Nombre + "\nFirma: " + firmante.Firma + "\nEdad" + firmante.Edad.ToString();
+                    resultado += "\nNombre: " + firmante.Nombre + "\nFirma: " + firmante.Firma + "\nEdad: " + firmante.Edad.ToString() + "\n-----";
                 }
+                resultado += "\n----- -----";
             }
             return resultado;
         }
