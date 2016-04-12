@@ -37,6 +37,9 @@ namespace PracticasLambda
         }
         Documento GenerarDocumentoAleatorioCon5Firmantes()
         {
+            var documento = new Documento();
+
+            return documento;
         }
         Firmante GenerarFirmanteAleatorio()
         {
