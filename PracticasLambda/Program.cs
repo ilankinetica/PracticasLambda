@@ -20,6 +20,7 @@ namespace PracticasLambda
             public string Firma { get; set; }
             public int Edad { get; set; }
         }
+        public static Random random = new Random();
         static void Main(string[] args)
         {
             var documentos = new List<Documento>();
@@ -27,41 +28,33 @@ namespace PracticasLambda
             {
                 documentos.Add(GenerarDocumentoAleatorioCon5Firmantes());
             }
-            var documentosConMayores = documentos.FindAll((Documento doc) =>
+            var documentosConMayores = new List<Documento>();
+            var lDocumentosConMayores = documentos.FindAll((Documento doc) =>
             {
                 bool contieneMayor = false;
+                
                 foreach (var persona in doc.Firmantes)
                 {
-                    if (persona.Edad >= 18) contieneMayor = true;
+                    if (persona.Edad >= 18) documentosConMayores.Add(doc);
                 }
                 return contieneMayor;
             });
+            Console.Write(escribirDocumentosConsola(documentosConMayores));
+            Console.ReadLine();
         }
-        void escribirDocumentosConsola (List<Documento> documentos)
+        static string escribirDocumentosConsola (List<Documento> documentos)
         {
             string resultado = "";
             foreach (var documento in documentos)
             {
-                resultado += "\n\nDocumento: \nTitulo: " + documento.Titulo + "\nCuerpo: " + documento.Cuerpo + "Firmantes: ";
+                resultado += "\n\nDocumento: \nTitulo: " + documento.Titulo + "\nCuerpo: " + documento.Cuerpo + "\nFirmantes: ";
                 foreach (var firmante in documento.Firmantes)
                 {
                     resultado += "\nNombre: " + firmante.Nombre + "\nFirma: " + firmante.Firma + "\nEdad" + firmante.Edad.ToString();
                 }
             }
+            return resultado;
         }
-        /* funcion que devuelve si el documento tiene un firmante mayor
-        static bool FirmanteMayor (Documento documento)
-        {
-            bool contieneMayor = false;
-            foreach (var persona in documento.Firmantes)
-            {
-                if (true)
-                {
-                    contieneMayor = true;
-                }
-            }
-            return contieneMayor; 
-        }*/
         #region Aleatorios
         static Documento GenerarDocumentoAleatorioCon5Firmantes()
         {
@@ -81,13 +74,13 @@ namespace PracticasLambda
             var firmante = new Firmante();
             firmante.Nombre = GenerarStringAleatorio();
             firmante.Firma = GenerarStringAleatorio();
-            var random = new Random();
+            //var random = new Random(DateTime.Now.Millisecond);
             firmante.Edad = random.Next(10, 70);
             return firmante;
         }
         static string GenerarStringAleatorio()
         {
-            var random = new Random(); //random que voy a usar en toda la funcion
+            //var random = new Random(DateTime.Now.Millisecond); //random que voy a usar en toda la funcion
             string stringAleatorio = ""; //el nuevo string que voy a generar (return)
             string caracteres = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; //los caracters que puede llevar
             int cantCaracteres = caracteres.Length; //el numero de caracteres que uso
