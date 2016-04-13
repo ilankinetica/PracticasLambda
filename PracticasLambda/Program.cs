@@ -24,6 +24,15 @@ namespace PracticasLambda
         {
             public int Compare(Documento x, Documento y)
             {
+                if (x.Titulo==y.Titulo)
+                {
+                    return 0;
+                }
+                var lengthX = x.Titulo.Length;
+                var lengthY = y.Titulo.Length;
+                int maximo = 0;
+                if (lengthX >= lengthY) maximo = lengthY;
+                else if (lengthX < lengthY) maximo = lengthX;
                 int letra = 0;
                 bool palabraDesordenada = true;
                 do
@@ -39,8 +48,10 @@ namespace PracticasLambda
                         return -1;
                     }
                     letra++;
-                } while (palabraDesordenada);
-                return 0;
+                } while (palabraDesordenada && letra < maximo);
+                if (lengthX >= lengthY) return 1;
+                else if (lengthX < lengthY) return -1;
+                else return 0;
             }
         }
         public static Random random = new Random();
@@ -55,7 +66,6 @@ namespace PracticasLambda
             Console.ReadLine();
         }
         #region Escribe en la Consola
-        //enteros.Sort
         //enteros.Last
         static string EscribirDocumentosConsola(List<Documento> documentos, string encabezado)
         {
@@ -98,32 +108,10 @@ namespace PracticasLambda
             resultado += "\n----- ----- -----\n";
             return resultado;
         }
-        static void EscribeSiFirmanteEdad17()
-        {
-            //Carga inicial de datos
-            var documentos = GenerarListaDocumentos(3, 50);
-            //Separa firmantes con 17 años
-            bool existeFirmanteEdad17 = false;
-            List<Firmante> firmantesEdad17 = new List<Firmante>();
-            existeFirmanteEdad17 = documentos.Exists((Documento doc) =>
-            {
-                foreach (var firmante in doc.Firmantes)
-                {
-                    if (firmante.Edad==17)
-                    {
-                        existeFirmanteEdad17 = true;
-                        firmantesEdad17.Add(firmante);
-                    }
-                }
-                return existeFirmanteEdad17;
-            });
-            string encabezado = "EXISTE FIRMANTE CON 17 AÑOS:" + existeFirmanteEdad17;
-            Console.Write(EscribirFirmantesConsola(firmantesEdad17,encabezado));
-        }
         static void EscribeDocumentosConFirmantesMayores()
         {
             //Carga de datos inicial
-            var documentos = GenerarListaDocumentos(10,5);
+            var documentos = GenerarListaDocumentos(5,5);
             //Separa los documentos que tienen por lo menos un firmante mayor a 18
             var documentosConMayores = new List<Documento>();
             documentosConMayores = documentos.FindAll((Documento doc) =>
@@ -142,6 +130,28 @@ namespace PracticasLambda
             //Escribe en la consola
             string encabezado = "MUESTRO DOCUMENTOS CON POR LO MENOS UN FIRMANTE MAYOR A 18 AÑOS DE EDAD";
             Console.Write(EscribirDocumentosConsola(documentosConMayores, encabezado));
+        }
+        static void EscribeSiFirmanteEdad17()
+        {
+            //Carga inicial de datos
+            var documentos = GenerarListaDocumentos(3, 50);
+            //Separa firmantes con 17 años
+            bool existeFirmanteEdad17 = false;
+            List<Firmante> firmantesEdad17 = new List<Firmante>();
+            existeFirmanteEdad17 = documentos.Exists((Documento doc) =>
+            {
+                foreach (var firmante in doc.Firmantes)
+                {
+                    if (firmante.Edad == 17)
+                    {
+                        existeFirmanteEdad17 = true;
+                        firmantesEdad17.Add(firmante);
+                    }
+                }
+                return existeFirmanteEdad17;
+            });
+            string encabezado = "EXISTE FIRMANTE CON 17 AÑOS:" + existeFirmanteEdad17;
+            Console.Write(EscribirFirmantesConsola(firmantesEdad17, encabezado));
         }
         static void EscribeDocumentosConTituloConA()
         {
