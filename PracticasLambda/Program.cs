@@ -24,9 +24,23 @@ namespace PracticasLambda
         {
             public int Compare(Documento x, Documento y)
             {
-                if (x.Titulo[0] > y.Titulo[0]) return 1;
-                else if (x.Titulo[0] < y.Titulo[0]) return -1;
-                else return 0;
+                int letra = 0;
+                bool palabraDesordenada = true;
+                do
+                {
+                    if (x.Titulo.ToUpper()[letra] > y.Titulo.ToUpper()[letra])
+                    {
+                        palabraDesordenada = false;
+                        return 1;
+                    }
+                    else if (x.Titulo.ToUpper()[letra] < y.Titulo.ToUpper()[letra])
+                    {
+                        palabraDesordenada = false;
+                        return -1;
+                    }
+                    letra++;
+                } while (palabraDesordenada);
+                return 0;
             }
         }
         public static Random random = new Random();
