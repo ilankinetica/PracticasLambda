@@ -43,26 +43,30 @@ namespace PracticasLambda
             }
             return resultado;
         }
-        static void escribeDocumentosConFirmantesMayores ()
+        static void escribeDocumentosConFirmantesMayores()
         {
             //Carga de datos inicial
             var documentos = new List<Documento>();
-            for (int i = 0; i< 10; i++)
+            for (int i = 0; i < 10; i++)
             {
                 documentos.Add(GenerarDocumentoAleatorioCon5Firmantes());
             }
-            //
+            //Separa los documentos que tienen por lo menos un firmante mayor a 18
             var documentosConMayores = new List<Documento>();
             var lDocumentosConMayores = documentos.FindAll((Documento doc) =>
             {
                 bool contieneMayor = false;
-
                 foreach (var persona in doc.Firmantes)
                 {
-                    if (persona.Edad >= 18) documentosConMayores.Add(doc);
+                    if (persona.Edad >= 18 && !contieneMayor)
+                    {
+                        contieneMayor = true;
+                        documentosConMayores.Add(doc);
+                    }
                 }
                 return contieneMayor;
             });
+            //Escribe en la consola
             Console.Write(escribirDocumentosConsola(documentosConMayores));
         }
         public void EscribeDocumentosConTituloConA()
@@ -101,7 +105,7 @@ namespace PracticasLambda
             string caracteres = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; //los caracters que puede llevar
             int cantCaracteres = caracteres.Length; //el numero de caracteres que uso
             char letra; //la letra que voy a agregar a mi nueva palabra
-            int cantStringAleatorio = random.Next(1,10); //el maximo de letras que le voy a poner a mi nueva palabra
+            int cantStringAleatorio = random.Next(1, 10); //el maximo de letras que le voy a poner a mi nueva palabra
             for (int i = 0; i < cantStringAleatorio; i++)
             {
                 letra = caracteres[random.Next(cantCaracteres)];
