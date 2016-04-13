@@ -20,6 +20,25 @@ namespace PracticasLambda
             public string Firma { get; set; }
             public int Edad { get; set; }
         }
+        public class sortEdadFirmantes : IComparer<Firmante>
+        {
+
+            public int Compare(Firmante x, Firmante y)
+            {
+                if (x.Edad==y.Edad)
+                {
+                    return 0;
+                }
+                else if(x.Edad>y.Edad)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
         public class sortPrimercaracterDocumentos : IComparer<Documento>
         {
             public int Compare(Documento x, Documento y)
@@ -65,10 +84,11 @@ namespace PracticasLambda
             EscribeDocumentosOrdenadosTituloAlfabeticamnete();
             EscribirUltimoDocumentoConUltimaLetraZ();
             EscribeDocumentosQueContenganMayusculas();
+            EscribeOrdenaFirmantesPorEdad();
             Console.ReadLine();
         }
         #region Escribe en la Consola
-
+        #region Funciones de escritura en la consola
         static string EscribirDocumentosConsola(List<Documento> documentos, string encabezado)
         {
             string resultado = "";
@@ -93,6 +113,7 @@ namespace PracticasLambda
             }
             return resultado;
         }
+     
         static string Escribir1DocumentoConosola(Documento documento, string encabezado)
         {
             string resultado = "";
@@ -136,6 +157,7 @@ namespace PracticasLambda
 
             return resultado;
         }
+        #endregion
         static void EscribirUltimoDocumentoConUltimaLetraZ()
         {
             var encabezado = "";
@@ -311,32 +333,60 @@ namespace PracticasLambda
                 var documentos = GenerarListaDocumentos(10, 1);
                 var documentosConMayusculas = new List<Documento>();
                 var encabezado = "MUESTRO DOCUMENTOS QUE TENGAN POR LO MENOS UNA LETRA EN MAYUSCULA COMO TITULO";
-                documentosConMayusculas =documentos.FindAll((Documento x)=>{
-                    var longitud = x.Titulo.Length-1;
-                      var hayDocumentoConMayuscula = false;
-                    while (longitud>0)
+                documentosConMayusculas = documentos.FindAll((Documento x) =>
+                {
+                    var longitud = x.Titulo.Length - 1;
+                    var hayDocumentoConMayuscula = false;
+                    while (longitud > 0)
                     {
                         if (x.Titulo[longitud] == x.Titulo.ToUpper()[longitud])
                         {
                             documentosConMayusculas.Add(x);
-                              longitud = -1;
-                              hayDocumentoConMayuscula = true;
+                            longitud = -1;
+                            hayDocumentoConMayuscula = true;
                         }
                         longitud--;
                     }
-                      if (hayDocumentoConMayuscula==false)
-                      {
+                    if (hayDocumentoConMayuscula == false)
+                    {
                         encabezado = "NO HAY DOCUMENTOS QUE TENGAN POR LO MENOS UNA LETRA EN MAYUSCULA COMO TITULO";
-                      }
+                    }
                     return hayDocumentoConMayuscula;
                 });
-                
-                Console.Write(EscribirDocumentosConsola(documentosConMayusculas,encabezado));
+
+                Console.Write(EscribirDocumentosConsola(documentosConMayusculas, encabezado));
             }
             catch (Exception)
             {
 
                 Console.Write("NO ES POSIBLE ESCRIBIR DOCUMENTOS QUE CONTENGAN MAYUSCULAS");
+            }
+        }
+        static void EscribeOrdenaFirmantesPorEdad()
+        {
+            try
+            {
+                var documentos = GenerarListaDocumentos(2, 5);
+                var listaFirmantesOrdenados = new List<Firmante>();
+                 documentos=documentos.FindAll(x =>
+                {
+                    foreach (var firmante in x.Firmantes)
+                    {
+                        listaFirmantesOrdenados.Add(firmante);
+                    }
+
+                    bool nkfldsnf = true;
+                    return nkfldsnf;
+                });
+                sortEdadFirmantes ordenar = new sortEdadFirmantes();
+                listaFirmantesOrdenados.Sort(ordenar);
+                string encabezado = "ORDENO FIRMANTES POR EDAD";
+                Console.Write(EscribirFirmantesConsola(listaFirmantesOrdenados, encabezado));
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
         #endregion
