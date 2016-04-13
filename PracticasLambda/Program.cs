@@ -70,108 +70,165 @@ namespace PracticasLambda
         static string EscribirDocumentosConsola(List<Documento> documentos, string encabezado)
         {
             string resultado = "";
-            resultado += encabezado + "\n\n";
-            foreach (var documento in documentos)
+            try
             {
+                foreach (var documento in documentos)
+                {
+                    resultado += encabezado + "\n\n";
+                    resultado += "\n\nDocumento: \nTitulo: " + documento.Titulo + "\nCuerpo: " + documento.Cuerpo + "\nFirmantes: \n";
+                    foreach (var firmante in documento.Firmantes)
+                    {
+                        resultado += "\nNombre: " + firmante.Nombre + "\nFirma: " + firmante.Firma + "\nEdad: " + firmante.Edad.ToString() + "\n-----";
+                    }
+                    resultado += "\n----- -----";
+                }
+                resultado += "\n----- ----- -----\n";
+            }
+           
+             catch (Exception)
+            {
+                resultado = "No se pudo procesar esta petición";
+            }
+            return resultado;
+        }
+        static string Escribir1DocumentoConosola(Documento documento, string encabezado)
+        {
+            string resultado = "";
+            try
+            {
+                resultado += encabezado + "\n\n";
                 resultado += "\n\nDocumento: \nTitulo: " + documento.Titulo + "\nCuerpo: " + documento.Cuerpo + "\nFirmantes: \n";
                 foreach (var firmante in documento.Firmantes)
                 {
                     resultado += "\nNombre: " + firmante.Nombre + "\nFirma: " + firmante.Firma + "\nEdad: " + firmante.Edad.ToString() + "\n-----";
                 }
                 resultado += "\n----- -----";
+                resultado += "\n----- ----- -----\n";
             }
-            resultado+= "\n----- ----- -----\n";
-            return resultado;
-        }
-        static string Escribir1DocumentoConosola(Documento documento, string encabezado)
-        {
-            string resultado = "";
-            resultado += encabezado + "\n\n";
-            resultado += "\n\nDocumento: \nTitulo: " + documento.Titulo + "\nCuerpo: " + documento.Cuerpo + "\nFirmantes: \n";
-            foreach (var firmante in documento.Firmantes)
+            catch (Exception)
             {
-                resultado += "\nNombre: " + firmante.Nombre + "\nFirma: " + firmante.Firma + "\nEdad: " + firmante.Edad.ToString() + "\n-----";
+
+                resultado = "No se pudo procesar esta petición";
             }
-            resultado += "\n----- -----";
-            resultado+= "\n----- ----- -----\n";
+          
             return resultado;
         }
         static string EscribirFirmantesConsola (List<Firmante> firmantes, string encabezado)
         {
             string resultado = "";
-            resultado += encabezado + "\n\n";
-            foreach (var firmante in firmantes)
+            try
             {
-                resultado += "\nFirmante: \nNombre: " + firmante.Nombre + "\nFirma: " + firmante.Firma + "\nEdad: " + firmante.Edad.ToString();
-                resultado += "\n----- -----";
+                resultado += encabezado + "\n\n";
+                foreach (var firmante in firmantes)
+                {
+                    resultado += "\nFirmante: \nNombre: " + firmante.Nombre + "\nFirma: " + firmante.Firma + "\nEdad: " + firmante.Edad.ToString();
+                    resultado += "\n----- -----";
+                }
+                resultado += "\n----- ----- -----\n";
             }
-            resultado += "\n----- ----- -----\n";
+            catch (Exception)
+            {
+
+                resultado = "No se pudo procesar esta petición";
+            }
+           
             return resultado;
         }
         static void EscribeDocumentosConFirmantesMayores()
         {
-            //Carga de datos inicial
-            var documentos = GenerarListaDocumentos(5,5);
-            //Separa los documentos que tienen por lo menos un firmante mayor a 18
+            string encabezado = "";
             var documentosConMayores = new List<Documento>();
-            documentosConMayores = documentos.FindAll((Documento doc) =>
+            try
             {
-                bool contieneMayor = false;
-                foreach (var firmante in doc.Firmantes)
+                var documentos = GenerarListaDocumentos(5, 5);
+                //Separa los documentos que tienen por lo menos un firmante mayor a 18
+                documentosConMayores = documentos.FindAll((Documento doc) =>
                 {
-                    if (firmante.Edad >= 18 && !contieneMayor)
+                    bool contieneMayor = false;
+                    foreach (var firmante in doc.Firmantes)
                     {
-                        contieneMayor = true;
-                        documentosConMayores.Add(doc);
+                        if (firmante.Edad >= 18 && !contieneMayor)
+                        {
+                            contieneMayor = true;
+                            documentosConMayores.Add(doc);
+                        }
                     }
-                }
-                return contieneMayor;
-            });
-            //Escribe en la consola
-            string encabezado = "MUESTRO DOCUMENTOS CON POR LO MENOS UN FIRMANTE MAYOR A 18 AÑOS DE EDAD";
+                    return contieneMayor;
+                });
+                encabezado = "MUESTRO DOCUMENTOS CON POR LO MENOS UN FIRMANTE MAYOR A 18 AÑOS DE EDAD";
+            }
+            catch (Exception)
+            {
+                encabezado = "NO ES POSIBLE MOSTRAR DOCUMENTOS CON POR LO MENOS UN FIRMANTE MAYOR A 18 AÑOS DE EDAD";
+
+            }
+           
             Console.Write(EscribirDocumentosConsola(documentosConMayores, encabezado));
         }
         static void EscribeSiFirmanteEdad17()
         {
-            //Carga inicial de datos
-            var documentos = GenerarListaDocumentos(3, 50);
-            //Separa firmantes con 17 años
-            bool existeFirmanteEdad17 = false;
-            List<Firmante> firmantesEdad17 = new List<Firmante>();
-            existeFirmanteEdad17 = documentos.Exists((Documento doc) =>
+            try
             {
-                foreach (var firmante in doc.Firmantes)
+                var documentos = GenerarListaDocumentos(3, 50);
+                //Separa firmantes con 17 años
+                bool existeFirmanteEdad17 = false;
+                List<Firmante> firmantesEdad17 = new List<Firmante>();
+                existeFirmanteEdad17 = documentos.Exists((Documento doc) =>
                 {
-                    if (firmante.Edad == 17)
+                    foreach (var firmante in doc.Firmantes)
                     {
-                        existeFirmanteEdad17 = true;
-                        firmantesEdad17.Add(firmante);
+                        if (firmante.Edad == 17)
+                        {
+                            existeFirmanteEdad17 = true;
+                            firmantesEdad17.Add(firmante);
+                        }
                     }
-                }
-                return existeFirmanteEdad17;
-            });
-            string encabezado = "EXISTE FIRMANTE CON 17 AÑOS:" + existeFirmanteEdad17;
-            Console.Write(EscribirFirmantesConsola(firmantesEdad17, encabezado));
+                    return existeFirmanteEdad17;
+                });
+                string encabezado = "EXISTE FIRMANTE CON 17 AÑOS:" + existeFirmanteEdad17;
+                Console.Write(EscribirFirmantesConsola(firmantesEdad17, encabezado));
+            }
+            catch (Exception)
+            {
+
+                Console.Write("NO ES POSIBLE ESCRIBIR FIRMANTES CON 17 AÑOS");
+            }
+            
         }
         static void EscribeDocumentosConTituloConA()
         {
-            //Carga incial de datos
-            var documentos = GenerarListaDocumentos(20,5);
-            //separa documentos con titulo que contenga A
-            var documentosConTituloA = documentos.FindAll(doc => doc.Titulo.Contains("A") == true);
-            //Escribe en consola
-            string encabezado = "MUESTRO DOCUMENTOS CON TITULO QUE CONTENGA LETRA A";
-            Console.Write(EscribirDocumentosConsola(documentosConTituloA, encabezado));
+            try
+            {
+                var documentos = GenerarListaDocumentos(20, 5);
+                //separa documentos con titulo que contenga A
+                var documentosConTituloA = documentos.FindAll(doc => doc.Titulo.Contains("A") == true);
+                //Escribe en consola
+                string encabezado = "MUESTRO DOCUMENTOS CON TITULO QUE CONTENGA LETRA A";
+                Console.Write(EscribirDocumentosConsola(documentosConTituloA, encabezado));
+            }
+            catch (Exception)
+            {
+
+                Console.Write("NO ES POSIBLE MOSTRAR DOCUMENTOS CON TITULO QUE CONTENGA LETRA A");
+            }
+            
         }
         static void EscribeDocumentosConTitulo3Caracteres()
         {
-            //carga incial
-            var documentos = GenerarListaDocumentos(20, 2);
-            //separa docuemntos con titulo de tres caracteres
-            var documentosConTitulo3 = documentos.Where(doc => doc.Titulo.Length == 3).ToList();
-            //Escribe en consola
-            string encabezado = "MUESTRO DOCUMENTOS CON TITULO DE 3 CARACTERES";
-            Console.Write(EscribirDocumentosConsola(documentosConTitulo3, encabezado));
+            try
+            {
+                var documentos = GenerarListaDocumentos(20, 2);
+                //separa docuemntos con titulo de tres caracteres
+                var documentosConTitulo3 = documentos.Where(doc => doc.Titulo.Length == 3).ToList();
+                //Escribe en consola
+                string encabezado = "MUESTRO DOCUMENTOS CON TITULO DE 3 CARACTERES";
+                Console.Write(EscribirDocumentosConsola(documentosConTitulo3, encabezado));
+            }
+            catch (Exception)
+            {
+                Console.Write("NO ES POSIBLE MOSTRAR DOCUMENTOS CON TITULO DE 3 CARACTERES");
+            }
+           
         }
         static void EscribePrimerDocumentoConCuerpoConAB()
         {
@@ -193,13 +250,22 @@ namespace PracticasLambda
         }
         static void EscribeDocumentosOrdenadosTituloAlfabeticamnete()
         {
-            var documentos = GenerarListaDocumentos(10, 1);
-            //ordena alfabeticamente
-            sortPrimercaracterDocumentos ordenar = new sortPrimercaracterDocumentos();
-            documentos.Sort(ordenar);
-            //escribe en consola
-            string encabezado = "ORDENO DOCUMENTOS POR ITUTLO ALFABETICAMENTE";
-            Console.Write(EscribirDocumentosConsola(documentos, encabezado));
+            try
+            {
+                var documentos = GenerarListaDocumentos(10, 1);
+                //ordena alfabeticamente
+                sortPrimercaracterDocumentos ordenar = new sortPrimercaracterDocumentos();
+                documentos.Sort(ordenar);
+                //escribe en consola
+                string encabezado = "ORDENO DOCUMENTOS POR TITULO ALFABETICAMENTE";
+                Console.Write(EscribirDocumentosConsola(documentos, encabezado));
+            }
+            catch (Exception)
+            {
+
+                Console.Write("NO ES POSIBLE ORDENAR DOCUMENTOS POR TITULO ALFABETICAMENTE");
+            }
+            
         }
         #endregion
         #region Aleatorios
