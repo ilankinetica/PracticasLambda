@@ -25,11 +25,11 @@ namespace PracticasLambda
 
             public int Compare(Firmante x, Firmante y)
             {
-                if (x.Edad==y.Edad)
+                if (x.Edad == y.Edad)
                 {
                     return 0;
                 }
-                else if(x.Edad>y.Edad)
+                else if (x.Edad > y.Edad)
                 {
                     return 1;
                 }
@@ -73,7 +73,6 @@ namespace PracticasLambda
                 else return 0;
             }
         }
-        public static Random random = new Random();
         static void Main(string[] args)
         {
             EscribeDocumentosConFirmantesMayores();
@@ -113,7 +112,7 @@ namespace PracticasLambda
             }
             return resultado;
         }
-     
+
         static string Escribir1DocumentoConosola(Documento documento, string encabezado)
         {
             string resultado = "";
@@ -368,16 +367,16 @@ namespace PracticasLambda
             {
                 var documentos = GenerarListaDocumentos(2, 5);
                 var listaFirmantesOrdenados = new List<Firmante>();
-                 documentos=documentos.FindAll(x =>
-                {
-                    foreach (var firmante in x.Firmantes)
-                    {
-                        listaFirmantesOrdenados.Add(firmante);
-                    }
+                documentos = documentos.FindAll(x =>
+                 {
+                     foreach (var firmante in x.Firmantes)
+                     {
+                         listaFirmantesOrdenados.Add(firmante);
+                     }
 
-                    bool nkfldsnf = true;
-                    return nkfldsnf;
-                });
+                     bool nkfldsnf = true;
+                     return nkfldsnf;
+                 });
                 sortEdadFirmantes ordenar = new sortEdadFirmantes();
                 listaFirmantesOrdenados.Sort(ordenar);
                 string encabezado = "ORDENO FIRMANTES POR EDAD";
@@ -391,6 +390,7 @@ namespace PracticasLambda
         }
         #endregion
         #region Aleatorios
+        public static Random random = new Random();
         static List<Documento> GenerarListaDocumentos(int cantidadDocumentos, int cantidadFirmantes)
         {
             var documentos = new List<Documento>();
