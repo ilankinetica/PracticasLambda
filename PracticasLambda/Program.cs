@@ -23,8 +23,9 @@ namespace PracticasLambda
         public static Random random = new Random();
         static void Main(string[] args)
         {
-            escribeDocumentosConFirmantesMayores();
+            EscribeDocumentosConFirmantesMayores();
             EscribeDocumentosConTituloConA();
+            EscribeDocumentosConTitulo3Caracteres();
             Console.ReadLine();
         }
         #region Escribe en la Consola
@@ -33,7 +34,7 @@ namespace PracticasLambda
         //enteros.First
         //enteros.Sort
         //enteros.Last
-        static string escribirDocumentosConsola(List<Documento> documentos, string encabezado)
+        static string EscribirDocumentosConsola(List<Documento> documentos, string encabezado)
         {
             string resultado = "";
             resultado += encabezado + "\n\n";
@@ -49,7 +50,7 @@ namespace PracticasLambda
             resultado+=("\n----- ----- -----");
             return resultado;
         }
-        static void escribeDocumentosConFirmantesMayores()
+        static void EscribeDocumentosConFirmantesMayores()
         {
             //Carga de datos inicial
             var documentos = GenerarListaDocumentos(10,5);
@@ -70,17 +71,29 @@ namespace PracticasLambda
             });
             //Escribe en la consola
             string encabezado = "MUESTRO DOCUMENTOS CON POR LO MENOS UN FIRMANTE MAYOR A 18 AÑOS DE EDAD";
-            Console.Write(escribirDocumentosConsola(documentosConMayores, encabezado));
+            Console.Write(EscribirDocumentosConsola(documentosConMayores, encabezado));
         }
         static void EscribeDocumentosConTituloConA()
         {
             //Carga incial de datos
             var documentos = GenerarListaDocumentos(20,5);
+            //separa documentos con titulo que contenga A
             var documentosConTituloA = new List<Documento>();
             documentosConTituloA = documentos.FindAll(doc => doc.Titulo.Contains("A") == true);
             //Escribe en consola
             string encabezado = "MUESTRO DOCUMENTOS CON TITULO QUE CONTENGA LETRA A";
-            Console.Write(escribirDocumentosConsola(documentosConTituloA, encabezado));
+            Console.Write(EscribirDocumentosConsola(documentosConTituloA, encabezado));
+        }
+        static void EscribeDocumentosConTitulo3Caracteres()
+        {
+            //carga incial
+            var documentos = GenerarListaDocumentos(20, 2);
+            //separa docuemntos con titulo de tres caracteres
+            var documentosConTitulo3 = new List<Documento>();
+            documentosConTitulo3 = documentos.Where(doc => doc.Titulo.Length == 3).ToList();
+            //Escribe en consola
+            string encabezado = "MUESTRO DOCUMENTOS CON TITULO DE 3 CARACTERES";
+            Console.Write(EscribirDocumentosConsola(documentosConTitulo3, encabezado));
         }
         #endregion
         #region Aleatorios
