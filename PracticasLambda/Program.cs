@@ -26,10 +26,10 @@ namespace PracticasLambda
             EscribeDocumentosConFirmantesMayores();
             EscribeDocumentosConTituloConA();
             EscribeDocumentosConTitulo3Caracteres();
+            EscribeSiFirmanteEdad17();
             Console.ReadLine();
         }
         #region Escribe en la Consola
-        //enteros.Where
         //enteros.Exists
         //enteros.First
         //enteros.Sort
@@ -47,8 +47,42 @@ namespace PracticasLambda
                 }
                 resultado += "\n----- -----";
             }
-            resultado+=("\n----- ----- -----");
+            resultado+="\n----- ----- -----";
             return resultado;
+        }
+        static string EscribirFirmantesConsola (List<Firmante> firmantes, string encabezado)
+        {
+            string resultado = "";
+            resultado += encabezado + "\n\n";
+            foreach (var firmante in firmantes)
+            {
+                resultado += "\nFirmante: \nNombre: " + firmante.Nombre + "\nFirma: " + firmante.Firma + "\nEdad: " + firmante.Edad.ToString();
+                resultado += "\n----- -----";
+            }
+            resultado += "\n----- ----- -----";
+            return resultado;
+        }
+        static void EscribeSiFirmanteEdad17()
+        {
+            //Carga inicial de datos
+            var documentos = GenerarListaDocumentos(3, 50);
+            //Separa firmantes con 17 años
+            bool existeFirmanteEdad17 = false;
+            List<Firmante> firmantesEdad17 = new List<Firmante>();
+            existeFirmanteEdad17 = documentos.Exists((Documento doc) =>
+            {
+                foreach (var firmante in doc.Firmantes)
+                {
+                    if (firmante.Edad==17)
+                    {
+                        existeFirmanteEdad17 = true;
+                        firmantesEdad17.Add(firmante);
+                    }
+                }
+                return existeFirmanteEdad17;
+            });
+            string encabezado = "EXISTE FIRMANTE CON 17 AÑOS:" + existeFirmanteEdad17;
+            Console.Write(EscribirFirmantesConsola(firmantesEdad17,encabezado));
         }
         static void EscribeDocumentosConFirmantesMayores()
         {
@@ -59,9 +93,9 @@ namespace PracticasLambda
             documentosConMayores = documentos.FindAll((Documento doc) =>
             {
                 bool contieneMayor = false;
-                foreach (var persona in doc.Firmantes)
+                foreach (var firmante in doc.Firmantes)
                 {
-                    if (persona.Edad >= 18 && !contieneMayor)
+                    if (firmante.Edad >= 18 && !contieneMayor)
                     {
                         contieneMayor = true;
                         documentosConMayores.Add(doc);
