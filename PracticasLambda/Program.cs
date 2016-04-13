@@ -64,11 +64,11 @@ namespace PracticasLambda
             EscribePrimerDocumentoConCuerpoConAB();
             EscribeDocumentosOrdenadosTituloAlfabeticamnete();
             EscribirUltimoDocumentoConUltimaLetraZ();
+            EscribeDocumentosQueContenganMayusculas();
             Console.ReadLine();
         }
         #region Escribe en la Consola
-        //enteros.Last
-        
+
         static string EscribirDocumentosConsola(List<Documento> documentos, string encabezado)
         {
             string resultado = "";
@@ -139,12 +139,13 @@ namespace PracticasLambda
         static void EscribirUltimoDocumentoConUltimaLetraZ()
         {
             var encabezado = "";
-          try
+            try
             {
                 var documentos = GenerarListaDocumentos(300, 1);
-                Documento ultimoDocConUltimaLetraZ = documentos.Last((Documento x) => {
+                Documento ultimoDocConUltimaLetraZ = documentos.Last((Documento x) =>
+                {
                     bool hayDocumento = false;
-                    var longitud = x.Titulo.Length-1;
+                    var longitud = x.Titulo.Length - 1;
                     if (x.Titulo[longitud] == 'Z')
                     {
                         ultimoDocConUltimaLetraZ = x;
@@ -156,10 +157,10 @@ namespace PracticasLambda
                     }
                     return hayDocumento;
                 });
-                var contador = documentos.Where(x=>x.Titulo[x.Titulo.Length-1] == 'Z').Count();
+                var contador = documentos.Where(x => x.Titulo[x.Titulo.Length - 1] == 'Z').Count();
                 encabezado = "MUESTRO ULTIMO DOCUMENTO CON ULTIMA LETRA DE TITULO 'Z'. SE HAN ENCONTRADO " + contador + " DOCUMENTOS CON ULTIMA LETRA 'Z'   ";
                 Console.Write(Escribir1DocumentoConosola(ultimoDocConUltimaLetraZ, encabezado));
-          }
+            }
             catch (InvalidOperationException)
             {
                 Console.Write("NO HAY DOCUMENTOS CON ULTIMA LETRA 'Z'");
@@ -302,6 +303,41 @@ namespace PracticasLambda
                 Console.Write("NO ES POSIBLE ORDENAR DOCUMENTOS POR TITULO ALFABETICAMENTE");
             }
 
+        }
+        static void EscribeDocumentosQueContenganMayusculas()
+        {
+            try
+            {
+                var documentos = GenerarListaDocumentos(10, 1);
+                var documentosConMayusculas = new List<Documento>();
+                var encabezado = "MUESTRO DOCUMENTOS QUE TENGAN POR LO MENOS UNA LETRA EN MAYUSCULA COMO TITULO";
+                documentosConMayusculas =documentos.FindAll((Documento x)=>{
+                    var longitud = x.Titulo.Length-1;
+                      var hayDocumentoConMayuscula = false;
+                    while (longitud>0)
+                    {
+                        if (x.Titulo[longitud] == x.Titulo.ToUpper()[longitud])
+                        {
+                            documentosConMayusculas.Add(x);
+                              longitud = -1;
+                              hayDocumentoConMayuscula = true;
+                        }
+                        longitud--;
+                    }
+                      if (hayDocumentoConMayuscula==false)
+                      {
+                        encabezado = "NO HAY DOCUMENTOS QUE TENGAN POR LO MENOS UNA LETRA EN MAYUSCULA COMO TITULO";
+                      }
+                    return hayDocumentoConMayuscula;
+                });
+                
+                Console.Write(EscribirDocumentosConsola(documentosConMayusculas,encabezado));
+            }
+            catch (Exception)
+            {
+
+                Console.Write("NO ES POSIBLE ESCRIBIR DOCUMENTOS QUE CONTENGAN MAYUSCULAS");
+            }
         }
         #endregion
         #region Aleatorios
