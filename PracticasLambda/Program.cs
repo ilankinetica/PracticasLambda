@@ -125,8 +125,7 @@ namespace PracticasLambda
             //Carga incial de datos
             var documentos = GenerarListaDocumentos(20,5);
             //separa documentos con titulo que contenga A
-            var documentosConTituloA = new List<Documento>();
-            documentosConTituloA = documentos.FindAll(doc => doc.Titulo.Contains("A") == true);
+            var documentosConTituloA = documentos.FindAll(doc => doc.Titulo.Contains("A") == true);
             //Escribe en consola
             string encabezado = "MUESTRO DOCUMENTOS CON TITULO QUE CONTENGA LETRA A";
             Console.Write(EscribirDocumentosConsola(documentosConTituloA, encabezado));
@@ -136,8 +135,7 @@ namespace PracticasLambda
             //carga incial
             var documentos = GenerarListaDocumentos(20, 2);
             //separa docuemntos con titulo de tres caracteres
-            var documentosConTitulo3 = new List<Documento>();
-            documentosConTitulo3 = documentos.Where(doc => doc.Titulo.Length == 3).ToList();
+            var documentosConTitulo3 = documentos.Where(doc => doc.Titulo.Length == 3).ToList();
             //Escribe en consola
             string encabezado = "MUESTRO DOCUMENTOS CON TITULO DE 3 CARACTERES";
             Console.Write(EscribirDocumentosConsola(documentosConTitulo3, encabezado));
