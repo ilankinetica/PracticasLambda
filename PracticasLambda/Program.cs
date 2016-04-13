@@ -27,10 +27,10 @@ namespace PracticasLambda
             EscribeDocumentosConTituloConA();
             EscribeDocumentosConTitulo3Caracteres();
             EscribeSiFirmanteEdad17();
+            EscribePrimerDocumentoConCuerpoConAB();
             Console.ReadLine();
         }
         #region Escribe en la Consola
-        //enteros.Exists
         //enteros.First
         //enteros.Sort
         //enteros.Last
@@ -47,6 +47,19 @@ namespace PracticasLambda
                 }
                 resultado += "\n----- -----";
             }
+            resultado+="\n----- ----- -----";
+            return resultado;
+        }
+        static string Escribir1DocumentoConosola(Documento documento, string encabezado)
+        {
+            string resultado = "";
+            resultado += encabezado + "\n\n";
+            resultado += "\n\nDocumento: \nTitulo: " + documento.Titulo + "\nCuerpo: " + documento.Cuerpo + "\nFirmantes: \n";
+            foreach (var firmante in documento.Firmantes)
+            {
+                resultado += "\nNombre: " + firmante.Nombre + "\nFirma: " + firmante.Firma + "\nEdad: " + firmante.Edad.ToString() + "\n-----";
+            }
+            resultado += "\n----- -----";
             resultado+="\n----- ----- -----";
             return resultado;
         }
@@ -128,6 +141,23 @@ namespace PracticasLambda
             //Escribe en consola
             string encabezado = "MUESTRO DOCUMENTOS CON TITULO DE 3 CARACTERES";
             Console.Write(EscribirDocumentosConsola(documentosConTitulo3, encabezado));
+        }
+        static void EscribePrimerDocumentoConCuerpoConAB()
+        {
+            //carga incial
+            var documentos = GenerarListaDocumentos(10000, 1);
+            //separar primer documento con abc
+            try
+            {
+                var documentoConAB = documentos.First(doc => doc.Cuerpo.Contains("AB"));
+                //escribe en consola
+                string encabezado = "MUESTRO PRIMER DOCUMENTO CON CUERPO QUE CONTIENE AB";
+                Console.Write(Escribir1DocumentoConosola(documentoConAB, encabezado));
+            }
+            catch
+            {
+                Console.Write("MUESTRO PRIMER DOCUMENTO CON CUERPO QUE CONTIENE AB\nNo hay ningun documento con cuerpo que contenga ABC");
+            }
         }
         #endregion
         #region Aleatorios
