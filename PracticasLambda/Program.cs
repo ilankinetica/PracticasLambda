@@ -52,7 +52,7 @@ namespace PracticasLambda
         static void escribeDocumentosConFirmantesMayores()
         {
             //Carga de datos inicial
-            var documentos = GenerarListaDocumentos(10);
+            var documentos = GenerarListaDocumentos(10,5);
             //Separa los documentos que tienen por lo menos un firmante mayor a 18
             var documentosConMayores = new List<Documento>();
             documentosConMayores = documentos.FindAll((Documento doc) =>
@@ -75,7 +75,7 @@ namespace PracticasLambda
         static void EscribeDocumentosConTituloConA()
         {
             //Carga incial de datos
-            var documentos = GenerarListaDocumentos(20);
+            var documentos = GenerarListaDocumentos(20,5);
             var documentosConTituloA = new List<Documento>();
             documentosConTituloA = documentos.FindAll(doc => doc.Titulo.Contains("A") == true);
             //Escribe en consola
@@ -84,22 +84,22 @@ namespace PracticasLambda
         }
         #endregion
         #region Aleatorios
-        static List<Documento> GenerarListaDocumentos (int cantidad)
+        static List<Documento> GenerarListaDocumentos (int cantidadDocumentos, int cantidadFirmantes)
         {
             var documentos = new List<Documento>();
-            for (int i = 0; i < cantidad; i++)
+            for (int i = 0; i < cantidadDocumentos; i++)
             {
-                documentos.Add(GenerarDocumentoAleatorioCon5Firmantes());
+                documentos.Add(GenerarDocumentoAleatorioConFirmantes(cantidadFirmantes));
             }
             return documentos;
         }
-        static Documento GenerarDocumentoAleatorioCon5Firmantes()
+        static Documento GenerarDocumentoAleatorioConFirmantes(int cantidad)
         {
             var documento = new Documento();
             documento.Titulo = GenerarStringAleatorio();
             documento.Cuerpo = GenerarStringAleatorio();
             var firmantes = new List<Firmante>();
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < cantidad; i++)
             {
                 firmantes.Add(GenerarFirmanteAleatorio());
             }
