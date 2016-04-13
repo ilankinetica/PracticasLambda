@@ -24,7 +24,7 @@ namespace PracticasLambda
         {
             public int Compare(Documento x, Documento y)
             {
-                if (x.Titulo==y.Titulo)
+                if (x.Titulo == y.Titulo)
                 {
                     return 0;
                 }
@@ -63,18 +63,20 @@ namespace PracticasLambda
             EscribeSiFirmanteEdad17();
             EscribePrimerDocumentoConCuerpoConAB();
             EscribeDocumentosOrdenadosTituloAlfabeticamnete();
+            EscribirUltimoDocumentoConUltimaLetraZ();
             Console.ReadLine();
         }
         #region Escribe en la Consola
         //enteros.Last
+        
         static string EscribirDocumentosConsola(List<Documento> documentos, string encabezado)
         {
             string resultado = "";
             try
             {
+                resultado += encabezado + "\n\n";
                 foreach (var documento in documentos)
                 {
-                    resultado += encabezado + "\n\n";
                     resultado += "\n\nDocumento: \nTitulo: " + documento.Titulo + "\nCuerpo: " + documento.Cuerpo + "\nFirmantes: \n";
                     foreach (var firmante in documento.Firmantes)
                     {
@@ -84,8 +86,8 @@ namespace PracticasLambda
                 }
                 resultado += "\n----- ----- -----\n";
             }
-           
-             catch (Exception)
+
+            catch (Exception)
             {
                 resultado = "No se pudo procesar esta petición";
             }
@@ -110,10 +112,10 @@ namespace PracticasLambda
 
                 resultado = "No se pudo procesar esta petición";
             }
-          
+
             return resultado;
         }
-        static string EscribirFirmantesConsola (List<Firmante> firmantes, string encabezado)
+        static string EscribirFirmantesConsola(List<Firmante> firmantes, string encabezado)
         {
             string resultado = "";
             try
@@ -131,8 +133,42 @@ namespace PracticasLambda
 
                 resultado = "No se pudo procesar esta petición";
             }
-           
+
             return resultado;
+        }
+        static void EscribirUltimoDocumentoConUltimaLetraZ()
+        {
+            var encabezado = "";
+          try
+            {
+                var documentos = GenerarListaDocumentos(300, 1);
+                Documento ultimoDocConUltimaLetraZ = documentos.Last((Documento x) => {
+                    bool hayDocumento = false;
+                    var longitud = x.Titulo.Length-1;
+                    if (x.Titulo[longitud] == 'Z')
+                    {
+                        ultimoDocConUltimaLetraZ = x;
+                        hayDocumento = true;
+                    }
+                    else
+                    {
+                        hayDocumento = false;
+                    }
+                    return hayDocumento;
+                });
+                var contador = documentos.Where(x=>x.Titulo[x.Titulo.Length-1] == 'Z').Count();
+                encabezado = "MUESTRO ULTIMO DOCUMENTO CON ULTIMA LETRA DE TITULO 'Z'. SE HAN ENCONTRADO " + contador + " DOCUMENTOS CON ULTIMA LETRA 'Z'   ";
+                Console.Write(Escribir1DocumentoConosola(ultimoDocConUltimaLetraZ, encabezado));
+          }
+            catch (InvalidOperationException)
+            {
+                Console.Write("NO HAY DOCUMENTOS CON ULTIMA LETRA 'Z'");
+            }
+            catch (Exception)
+            {
+
+                Console.Write("NO ES POSIBLE MOSTRAR ULTIMO DOCUMENTO CON ULTIMA LETRA 'Z'");
+            }
         }
         static void EscribeDocumentosConFirmantesMayores()
         {
@@ -162,7 +198,7 @@ namespace PracticasLambda
                 encabezado = "NO ES POSIBLE MOSTRAR DOCUMENTOS CON POR LO MENOS UN FIRMANTE MAYOR A 18 AÑOS DE EDAD";
 
             }
-           
+
             Console.Write(EscribirDocumentosConsola(documentosConMayores, encabezado));
         }
         static void EscribeSiFirmanteEdad17()
@@ -193,7 +229,7 @@ namespace PracticasLambda
 
                 Console.Write("NO ES POSIBLE ESCRIBIR FIRMANTES CON 17 AÑOS");
             }
-            
+
         }
         static void EscribeDocumentosConTituloConA()
         {
@@ -211,7 +247,7 @@ namespace PracticasLambda
 
                 Console.Write("NO ES POSIBLE MOSTRAR DOCUMENTOS CON TITULO QUE CONTENGA LETRA A");
             }
-            
+
         }
         static void EscribeDocumentosConTitulo3Caracteres()
         {
@@ -228,7 +264,7 @@ namespace PracticasLambda
             {
                 Console.Write("NO ES POSIBLE MOSTRAR DOCUMENTOS CON TITULO DE 3 CARACTERES");
             }
-           
+
         }
         static void EscribePrimerDocumentoConCuerpoConAB()
         {
@@ -238,7 +274,7 @@ namespace PracticasLambda
             try
             {
                 var documentoConAB = documentos.First(doc => doc.Cuerpo.Contains("AB"));
-                var contadorConAB = documentos.Where(doc=>doc.Cuerpo.Contains("AB")).Count();
+                var contadorConAB = documentos.Where(doc => doc.Cuerpo.Contains("AB")).Count();
                 //escribe en consola
                 string encabezado = "MUESTRO PRIMER DOCUMENTO CON CUERPO QUE CONTIENE AB. TOTAL CUERPO CON AB: " + contadorConAB.ToString();
                 Console.Write(Escribir1DocumentoConosola(documentoConAB, encabezado));
@@ -265,11 +301,11 @@ namespace PracticasLambda
 
                 Console.Write("NO ES POSIBLE ORDENAR DOCUMENTOS POR TITULO ALFABETICAMENTE");
             }
-            
+
         }
         #endregion
         #region Aleatorios
-        static List<Documento> GenerarListaDocumentos (int cantidadDocumentos, int cantidadFirmantes)
+        static List<Documento> GenerarListaDocumentos(int cantidadDocumentos, int cantidadFirmantes)
         {
             var documentos = new List<Documento>();
             for (int i = 0; i < cantidadDocumentos; i++)
