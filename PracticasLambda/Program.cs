@@ -8,13 +8,13 @@ namespace PracticasLambda
 {
     class Program
     {
-        class Documento
+        public class Documento
         {
             public string Titulo { get; set; }
             public string Cuerpo { get; set; }
             public List<Firmante> Firmantes { get; set; }
         }
-        class Firmante
+        public class Firmante
         {
             public string Nombre { get; set; }
             public string Firma { get; set; }
@@ -56,7 +56,7 @@ namespace PracticasLambda
                 }
                 resultado += "\n----- -----";
             }
-            resultado+="\n----- ----- -----";
+            resultado+= "\n----- ----- -----\n";
             return resultado;
         }
         static string Escribir1DocumentoConosola(Documento documento, string encabezado)
@@ -69,7 +69,7 @@ namespace PracticasLambda
                 resultado += "\nNombre: " + firmante.Nombre + "\nFirma: " + firmante.Firma + "\nEdad: " + firmante.Edad.ToString() + "\n-----";
             }
             resultado += "\n----- -----";
-            resultado+="\n----- ----- -----";
+            resultado+= "\n----- ----- -----\n";
             return resultado;
         }
         static string EscribirFirmantesConsola (List<Firmante> firmantes, string encabezado)
@@ -81,7 +81,7 @@ namespace PracticasLambda
                 resultado += "\nFirmante: \nNombre: " + firmante.Nombre + "\nFirma: " + firmante.Firma + "\nEdad: " + firmante.Edad.ToString();
                 resultado += "\n----- -----";
             }
-            resultado += "\n----- ----- -----";
+            resultado += "\n----- ----- -----\n";
             return resultado;
         }
         static void EscribeSiFirmanteEdad17()
@@ -169,10 +169,10 @@ namespace PracticasLambda
         }
         static void EscribeDocumentosOrdenadosTituloAlfabeticamnete()
         {
-            //carga iniciar
             var documentos = GenerarListaDocumentos(10, 1);
             //ordena alfabeticamente
-            documentos.Sort();
+            sortPrimercaracterDocumentos ordenar = new sortPrimercaracterDocumentos();
+            documentos.Sort(ordenar);
             //escribe en consola
             string encabezado = "ORDENO DOCUMENTOS POR ITUTLO ALFABETICAMENTE";
             Console.Write(EscribirDocumentosConsola(documentos, encabezado));
