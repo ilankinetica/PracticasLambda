@@ -20,6 +20,15 @@ namespace PracticasLambda
             public string Firma { get; set; }
             public int Edad { get; set; }
         }
+        public class sortPrimercaracterDocumentos : IComparer<Documento>
+        {
+            public int Compare(Documento x, Documento y)
+            {
+                if (x.Titulo[0] > y.Titulo[0]) return 1;
+                else if (x.Titulo[0] < y.Titulo[0]) return -1;
+                else return 0;
+            }
+        }
         public static Random random = new Random();
         static void Main(string[] args)
         {
@@ -28,10 +37,10 @@ namespace PracticasLambda
             EscribeDocumentosConTitulo3Caracteres();
             EscribeSiFirmanteEdad17();
             EscribePrimerDocumentoConCuerpoConAB();
+            EscribeDocumentosOrdenadosTituloAlfabeticamnete();
             Console.ReadLine();
         }
         #region Escribe en la Consola
-        //enteros.First
         //enteros.Sort
         //enteros.Last
         static string EscribirDocumentosConsola(List<Documento> documentos, string encabezado)
@@ -157,6 +166,16 @@ namespace PracticasLambda
             {
                 Console.Write("MUESTRO PRIMER DOCUMENTO CON CUERPO QUE CONTIENE AB\nNo hay ningun documento con cuerpo que contenga AB");
             }
+        }
+        static void EscribeDocumentosOrdenadosTituloAlfabeticamnete()
+        {
+            //carga iniciar
+            var documentos = GenerarListaDocumentos(10, 1);
+            //ordena alfabeticamente
+            documentos.Sort();
+            //escribe en consola
+            string encabezado = "ORDENO DOCUMENTOS POR ITUTLO ALFABETICAMENTE";
+            Console.Write(EscribirDocumentosConsola(documentos, encabezado));
         }
         #endregion
         #region Aleatorios
