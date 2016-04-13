@@ -145,18 +145,19 @@ namespace PracticasLambda
         static void EscribePrimerDocumentoConCuerpoConAB()
         {
             //carga incial
-            var documentos = GenerarListaDocumentos(10000, 1);
+            var documentos = GenerarListaDocumentos(5000, 1);
             //separar primer documento con abc
             try
             {
                 var documentoConAB = documentos.First(doc => doc.Cuerpo.Contains("AB"));
+                var contadorConAB = documentos.Where(doc=>doc.Cuerpo.Contains("AB")).Count();
                 //escribe en consola
-                string encabezado = "MUESTRO PRIMER DOCUMENTO CON CUERPO QUE CONTIENE AB";
+                string encabezado = "MUESTRO PRIMER DOCUMENTO CON CUERPO QUE CONTIENE AB. TOTAL CUERPO CON AB: " + contadorConAB.ToString();
                 Console.Write(Escribir1DocumentoConosola(documentoConAB, encabezado));
             }
             catch
             {
-                Console.Write("MUESTRO PRIMER DOCUMENTO CON CUERPO QUE CONTIENE AB\nNo hay ningun documento con cuerpo que contenga ABC");
+                Console.Write("MUESTRO PRIMER DOCUMENTO CON CUERPO QUE CONTIENE AB\nNo hay ningun documento con cuerpo que contenga AB");
             }
         }
         #endregion
