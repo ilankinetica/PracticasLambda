@@ -23,15 +23,15 @@ namespace PracticasLambda
         public static Random random = new Random();
         static void Main(string[] args)
         {
-            Console.Write("MUESTRO DOCUMENTOS CON POR LO MENOS UN FIRMANTE MAYOR A 18 AÑOS DE EDAD\n\n");
             escribeDocumentosConFirmantesMayores();
-            Console.Write("\n----- ----- -----");
+            EscribeDocumentosConTituloConA();
             Console.ReadLine();
         }
         #region Escribe en la Consola
-        static string escribirDocumentosConsola(List<Documento> documentos)
+        static string escribirDocumentosConsola(List<Documento> documentos, string encabezado)
         {
             string resultado = "";
+            resultado += encabezado + "\n\n";
             foreach (var documento in documentos)
             {
                 resultado += "\n\nDocumento: \nTitulo: " + documento.Titulo + "\nCuerpo: " + documento.Cuerpo + "\nFirmantes: \n";
@@ -41,6 +41,7 @@ namespace PracticasLambda
                 }
                 resultado += "\n----- -----";
             }
+            resultado+=("\n----- ----- -----");
             return resultado;
         }
         static void escribeDocumentosConFirmantesMayores()
@@ -53,7 +54,7 @@ namespace PracticasLambda
             }
             //Separa los documentos que tienen por lo menos un firmante mayor a 18
             var documentosConMayores = new List<Documento>();
-            var lDocumentosConMayores = documentos.FindAll((Documento doc) =>
+            documentosConMayores = documentos.FindAll((Documento doc) =>
             {
                 bool contieneMayor = false;
                 foreach (var persona in doc.Firmantes)
@@ -67,12 +68,22 @@ namespace PracticasLambda
                 return contieneMayor;
             });
             //Escribe en la consola
-            Console.Write(escribirDocumentosConsola(documentosConMayores));
+            string encabezado = "MUESTRO DOCUMENTOS CON POR LO MENOS UN FIRMANTE MAYOR A 18 AÑOS DE EDAD";
+            Console.Write(escribirDocumentosConsola(documentosConMayores, encabezado));
         }
-        public void EscribeDocumentosConTituloConA()
+        static void EscribeDocumentosConTituloConA()
         {
+            //Carga incial de datos
             var documentos = new List<Documento>();
-
+            for (int i = 0; i < 20; i++)
+            {
+                documentos.Add(GenerarDocumentoAleatorioCon5Firmantes());
+            }
+            var documentosConTituloA = new List<Documento>();
+            documentosConTituloA = documentos.FindAll(doc => doc.Titulo.Contains("A") == true);
+            //Escribe en consola
+            string encabezado = "MUESTRO DOCUMENTOS CON TITULO QUE CONTENGA LETRA A";
+            Console.Write(escribirDocumentosConsola(documentosConTituloA, encabezado));
         }
         #endregion
         #region Aleatorios
