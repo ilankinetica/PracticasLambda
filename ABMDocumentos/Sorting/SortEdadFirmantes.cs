@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ABMDocumentos.Sorting
 {
-    class SortEdadFirmantes : IComparer<Firmante>
+    public class SortEdadFirmantes : IComparer<Firmante>
     {
         /// <summary>
         /// Compara dos objetos y devuelve un valor que determina el orden alfabetico
