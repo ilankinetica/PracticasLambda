@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PracticasLambda", "PracticasLambda\PracticasLambda.csproj", "{E75CFDF1-E68F-4F81-9E41-283514BBD01C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLambda", "WebLambda\WebLambda.csproj", "{E7CF1AE7-F82F-4CBF-AAC7-E9028A7EF39B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABMDocumentos", "ABMDocumentos\ABMDocumentos.csproj", "{AE989456-8233-450D-9DB2-0A0F69A38C41}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{E75CFDF1-E68F-4F81-9E41-283514BBD01C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E75CFDF1-E68F-4F81-9E41-283514BBD01C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E75CFDF1-E68F-4F81-9E41-283514BBD01C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7CF1AE7-F82F-4CBF-AAC7-E9028A7EF39B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7CF1AE7-F82F-4CBF-AAC7-E9028A7EF39B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7CF1AE7-F82F-4CBF-AAC7-E9028A7EF39B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7CF1AE7-F82F-4CBF-AAC7-E9028A7EF39B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE989456-8233-450D-9DB2-0A0F69A38C41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE989456-8233-450D-9DB2-0A0F69A38C41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE989456-8233-450D-9DB2-0A0F69A38C41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE989456-8233-450D-9DB2-0A0F69A38C41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

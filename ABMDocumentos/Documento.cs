@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace ABMDocumentos
 {
-    public class Class1
+    public class Documento
     {
+        public string Titulo { get; set; }
+        public string Cuerpo { get; set; }
+        public List<Firmante> Firmantes { get; set; }
     }
 }
