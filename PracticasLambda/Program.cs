@@ -91,9 +91,10 @@ namespace PracticasLambda
             EscribirUltimoDocumentoConUltimaLetraZ();
             EscribeDocumentosQueContenganMayusculas();
             EscribeOrdenaFirmantesPorEdad();
+            EscribeDocumentosTitulosEnMayuscula();
+            EscribeTitulos();
             Console.ReadLine();
         }
-        #region Escribe en la Consola
         #region Funciones de escritura en la consola
         static string EscribirDocumentosConsola(List<Documento> documentos, string encabezado)
         {
@@ -119,7 +120,6 @@ namespace PracticasLambda
             }
             return resultado;
         }
-
         static string Escribir1DocumentoConosola(Documento documento, string encabezado)
         {
             string resultado = "";
@@ -164,6 +164,7 @@ namespace PracticasLambda
             return resultado;
         }
         #endregion
+        #region Escribe en la Consola
         static void EscribirUltimoDocumentoConUltimaLetraZ()
         {
             var encabezado = "";
@@ -359,12 +360,10 @@ namespace PracticasLambda
                     }
                     return hayDocumentoConMayuscula;
                 });
-
                 Console.Write(EscribirDocumentosConsola(documentosConMayusculas, encabezado));
             }
             catch (Exception)
             {
-
                 Console.Write("NO ES POSIBLE ESCRIBIR DOCUMENTOS QUE CONTENGAN MAYUSCULAS");
             }
         }
@@ -391,8 +390,36 @@ namespace PracticasLambda
             }
             catch (Exception)
             {
-
-                throw;
+                Console.Write("ERROR");
+            }
+        }
+        static void EscribeDocumentosTitulosEnMayuscula()
+        {
+            try
+            {
+                var documentos = GenerarListaDocumentos(5, 3);
+                var documentosTitulomayuscula = new List<Documento>();
+                Func<string, string> ponerTituloMayuscula = (titulo => titulo.ToUpper());
+                foreach (var documento in documentos)
+                {
+                    documento.Titulo = ponerTituloMayuscula(documento.Titulo);
+                    documentosTitulomayuscula.Add(documento);
+                }
+                string encabezado = "PONE TODOS LOS TITULOS EN MAYUSCULA";
+                Console.Write(EscribirDocumentosConsola(documentosTitulomayuscula, encabezado));
+            }
+            catch (Exception)
+            {
+            }
+        }
+        static void EscribeTitulos()
+        {
+            Console.WriteLine("\nESCRIBIR TITUTLOS DE DOCUMENTOS");
+            var documentos = GenerarListaDocumentos(15, 1);
+            Action<Documento> escribirTitulos = doc => Console.WriteLine(doc.Titulo);
+            foreach (var documento in documentos)
+            {
+                escribirTitulos(documento);
             }
         }
         #endregion
