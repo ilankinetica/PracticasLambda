@@ -93,6 +93,7 @@ namespace PracticasLambda
             EscribeOrdenaFirmantesPorEdad();
             EscribeDocumentosTitulosEnMayuscula();
             EscribeTitulos();
+            EscribeCualFirmanteEsMayor();
             Console.ReadLine();
         }
         #region Funciones de escritura en la consola
@@ -118,6 +119,26 @@ namespace PracticasLambda
             {
                 resultado = "No se pudo procesar esta petición";
             }
+            return resultado;
+        }
+        static string Escribir1DocumentoConosola(Documento documento)
+        {
+            string resultado = "";
+            try
+            {
+                resultado += "\n\nDocumento: \nTitulo: " + documento.Titulo + "\nCuerpo: " + documento.Cuerpo + "\nFirmantes: \n";
+                foreach (var firmante in documento.Firmantes)
+                {
+                    resultado += "\nNombre: " + firmante.Nombre + "\nFirma: " + firmante.Firma + "\nEdad: " + firmante.Edad.ToString() + "\n-----";
+                }
+                resultado += "\n----- -----";
+            }
+            catch (Exception)
+            {
+
+                resultado = "No se pudo procesar esta petición";
+            }
+
             return resultado;
         }
         static string Escribir1DocumentoConosola(Documento documento, string encabezado)
@@ -407,19 +428,62 @@ namespace PracticasLambda
                 }
                 string encabezado = "PONE TODOS LOS TITULOS EN MAYUSCULA";
                 Console.Write(EscribirDocumentosConsola(documentosTitulomayuscula, encabezado));
+                Console.WriteLine("\n----- ----- -----");
             }
             catch (Exception)
             {
+                Console.Write("ERROR");
             }
+        }
+        static void EscribeCualFirmanteEsMayor()
+        {
+            try
+            {   
+                var documentos = GenerarListaDocumentos(10, 2);
+                Func<int, int, string> cualEsMayor = ((edad1, edad2) =>
+                {
+                    string mensaje;
+                    if (edad1 > edad2) mensaje = "El firmante 1 es mayor";
+                    else if (edad1 < edad2) mensaje = "El firmante 2 es mayor";
+                    else mensaje = "La edad es la misma";
+                    return mensaje;
+                });
+                Console.WriteLine("DETERMINA QUE FIRMANTE ES MAYOR");
+                foreach (var documento in documentos)
+                {
+                    int edad1=0;
+                    int edad2=0;
+                    foreach (var firmante in documento.Firmantes)
+                    {
+                        if (edad1 == 0) edad1 = firmante.Edad;
+                        else edad2 = firmante.Edad;
+                    }
+                    Console.WriteLine(cualEsMayor(edad1, edad2));
+                    Console.WriteLine(Escribir1DocumentoConosola(documento));
+                }
+                Console.WriteLine("\n----- ----- -----");
+            }
+            catch
+            {
+                Console.Write("ERROR");
+            }
+
         }
         static void EscribeTitulos()
         {
-            Console.WriteLine("\nESCRIBIR TITUTLOS DE DOCUMENTOS");
-            var documentos = GenerarListaDocumentos(15, 1);
-            Action<Documento> escribirTitulos = doc => Console.WriteLine(doc.Titulo);
-            foreach (var documento in documentos)
+            try
             {
-                escribirTitulos(documento);
+                Console.WriteLine("\nESCRIBIR TITUTLOS DE DOCUMENTOS");
+                var documentos = GenerarListaDocumentos(15, 1);
+                Action<Documento> escribirTitulos = doc => Console.WriteLine(doc.Titulo);
+                foreach (var documento in documentos)
+                {
+                    escribirTitulos(documento);
+                }
+            }
+            catch (Exception)
+            {
+                Console.Write("ERROR");
             }
         }
         #endregion
