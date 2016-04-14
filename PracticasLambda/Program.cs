@@ -94,6 +94,7 @@ namespace PracticasLambda
             EscribeDocumentosTitulosEnMayuscula();
             EscribeTitulos();
             EscribeCualFirmanteEsMayor();
+            EscribeFirmantesMasGrandes();
             Console.ReadLine();
         }
         #region Funciones de escritura en la consola
@@ -179,6 +180,23 @@ namespace PracticasLambda
             catch (Exception)
             {
 
+                resultado = "No se pudo procesar esta petición";
+            }
+
+            return resultado;
+        }
+        static string Escribir1FirmanteConsola(Firmante firmante, string encabezado)
+        {
+            string resultado = "";
+            try
+            {
+                resultado += encabezado + "\n\n";
+                resultado += "\nFirmante: \nNombre: " + firmante.Nombre + "\nFirma: " + firmante.Firma + "\nEdad: " + firmante.Edad.ToString();
+                resultado += "\n----- -----";
+                resultado += "\n----- ----- -----\n";
+            }
+            catch (Exception)
+            {
                 resultado = "No se pudo procesar esta petición";
             }
 
@@ -438,7 +456,7 @@ namespace PracticasLambda
         static void EscribeCualFirmanteEsMayor()
         {
             try
-            {   
+            {
                 var documentos = GenerarListaDocumentos(10, 2);
                 Func<int, int, string> cualEsMayor = ((edad1, edad2) =>
                 {
@@ -451,8 +469,8 @@ namespace PracticasLambda
                 Console.WriteLine("DETERMINA QUE FIRMANTE ES MAYOR");
                 foreach (var documento in documentos)
                 {
-                    int edad1=0;
-                    int edad2=0;
+                    int edad1 = 0;
+                    int edad2 = 0;
                     foreach (var firmante in documento.Firmantes)
                     {
                         if (edad1 == 0) edad1 = firmante.Edad;
@@ -485,6 +503,24 @@ namespace PracticasLambda
             {
                 Console.Write("ERROR");
             }
+        }
+        static void EscribeFirmantesMasGrandes()
+        {
+            var documentos = GenerarListaDocumentos(2, 5);
+            var firmantesOrdenados = new List<Firmante>();
+            foreach (var documento in documentos)
+            {
+                Action<Firmante> ColocarFirmantesEnLaLista = x => firmantesOrdenados.Add(x);
+                foreach (var firmante in documento.Firmantes)
+                {
+                    ColocarFirmantesEnLaLista(firmante);
+                }
+                sortEdadFirmantes ordenar = new sortEdadFirmantes();
+                firmantesOrdenados.Sort(ordenar);
+            }
+            var firmanteMasGrande = firmantesOrdenados.Last();
+            string encabezado = "ESCRIBE EL FIRMANTE MAYOR";
+            Console.Write(Escribir1FirmanteConsola(firmanteMasGrande, encabezado));
         }
         #endregion
         #region Aleatorios
