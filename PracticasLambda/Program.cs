@@ -20,9 +20,15 @@ namespace PracticasLambda
             public string Firma { get; set; }
             public int Edad { get; set; }
         }
+        #region Sorting
         public class sortEdadFirmantes : IComparer<Firmante>
         {
-
+            /// <summary>
+            /// Compara dos objetos y devuelve un valor que determina el orden alfabetico
+            /// </summary>
+            /// <param name="x">Primer objeto a comparar</param>
+            /// <param name="y">Segundo objeto a comparar</param>
+            /// <returns>0 si son iguales, -1 si y es mayor, 1 si x es mayor</returns>
             public int Compare(Firmante x, Firmante y)
             {
                 if (x.Edad == y.Edad)
@@ -73,6 +79,7 @@ namespace PracticasLambda
                 else return 0;
             }
         }
+        #endregion
         static void Main(string[] args)
         {
             EscribeDocumentosConFirmantesMayores();
