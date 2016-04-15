@@ -8,12 +8,11 @@ namespace ABMDocumentos
 {
     public static class Funciones
     {
-        public static string DocumentosConFirmantesMayores(List<Documento> documentos)
+        public static List<Documento> DocumentosConFirmantesMayores(List<Documento> documentos)
         {
-            string texto = "";
+            var documentosConMayores = new List<Documento>();
             try
             {
-                var documentosConMayores = new List<Documento>();
                 documentosConMayores = documentos.FindAll((Documento doc) =>
                 {
                     bool contieneMayor = false;
@@ -27,21 +26,19 @@ namespace ABMDocumentos
                     }
                     return contieneMayor;
                 });
-                var encabezado = "MUESTRO DOCUMENTOS CON POR LO MENOS UN FIRMANTE MAYOR A 18 AÑOS DE EDAD";
-                texto = FormatoFunciones.DocumentosVarios(documentosConMayores, encabezado);
             }
             catch (Exception)
             {
                 throw;
             }
-            return texto;
+            return documentosConMayores;
         }
-        public static string UlitmoDocumentoYCantidadConUltimaLetratituloZ(List<Documento> documentos)
+        public static Documento UlitmoDocumentoConUltimaLetratituloZ(List<Documento> documentos)
         {
-            string texto = "";
+            Documento ultimoDocConUltimaLetraZ = new Documento();
             try
             {
-                Documento ultimoDocConUltimaLetraZ = documentos.Last((Documento x) =>
+                ultimoDocConUltimaLetraZ = documentos.Last((Documento x) =>
                 {
                     bool hayDocumento = false;
                     var ultimaLetra = x.Titulo.Length - 1;
@@ -56,22 +53,18 @@ namespace ABMDocumentos
                     }
                     return hayDocumento;
                 });
-                var contador = documentos.Where(x => x.Titulo[x.Titulo.Length - 1] == 'Z').Count();
-                var encabezado = "MUESTRO ULTIMO DOCUMENTO CON ULTIMA LETRA DE TITULO 'Z'. SE HAN ENCONTRADO " + contador + " DOCUMENTOS CON ULTIMA LETRA 'Z'   ";
-                texto = FormatoFunciones.Documentos1(ultimoDocConUltimaLetraZ, encabezado);
             }
             catch (Exception)
             {
             }
-            return texto;
+            return ultimoDocConUltimaLetraZ;
         }
-        public static string PrimerFirmanteEdad17(List<Documento> documentos)
+        public static List<Firmante> PrimerFirmanteEdad17(List<Documento> documentos)
         {
-            string texto = "";
+            List<Firmante> firmantesEdad17 = new List<Firmante>();
             try
             {
                 bool existeFirmanteEdad17 = false;
-                List<Firmante> firmantesEdad17 = new List<Firmante>();
                 existeFirmanteEdad17 = documentos.Exists((Documento doc) =>
                 {
                     foreach (var firmante in doc.Firmantes)
@@ -84,105 +77,88 @@ namespace ABMDocumentos
                     }
                     return existeFirmanteEdad17;
                 });
-                var encabezado = "EXISTE FIRMANTE CON 17 AÑOS:" + existeFirmanteEdad17;
-                texto = FormatoFunciones.FirmantesVarios(firmantesEdad17, encabezado);
             }
             catch (Exception)
             {
 
                 throw;
             }
-            return texto;
+            return firmantesEdad17;
         }
-        public static string DocumentosConTituloConA(List<Documento> documentos)
+        public static List<Documento> DocumentosConTituloConA(List<Documento> documentos)
         {
-            string texto = "";
+            var documentosConTituloA = new List<Documento>();
             try
             {
-                var documentosConTituloA = documentos.FindAll(doc => doc.Titulo.Contains("A") == true);
-                string encabezado = "MUESTRO DOCUMENTOS CON TITULO QUE CONTENGA LETRA A";
-                texto = FormatoFunciones.DocumentosVarios(documentosConTituloA, encabezado);
+                documentosConTituloA = documentos.FindAll(doc => doc.Titulo.Contains("A") == true);
             }
             catch (Exception)
             {
 
                 throw;
             }
-            return texto;
+            return documentosConTituloA;
         }
-        public static string DocumentosConTitulo3Caracteres(List<Documento> documentos)
+        public static List<Documento> DocumentosConTitulo3Caracteres(List<Documento> documentos)
         {
-            string texto = "";
+            var documentosConTitulo3 = new List<Documento>();
             try
             {
-                var documentosConTitulo3 = documentos.Where(doc => doc.Titulo.Length == 3).ToList();
-                string encabezado = "MUESTRO DOCUMENTOS CON TITULO DE 3 CARACTERES";
-                texto = FormatoFunciones.DocumentosVarios(documentosConTitulo3, encabezado);
+                documentosConTitulo3 = documentos.Where(doc => doc.Titulo.Length == 3).ToList();
             }
             catch (Exception)
             {
 
                 throw;
             }
-            return texto;
+            return documentosConTitulo3;
         }
-        public static string DocumentoYCantidadConCuerpoAB(List<Documento> documentos)
+        public static Documento DocumentoConCuerpoAB(List<Documento> documentos)
         {
-            string texto = "";
+            var documentoConAB = new Documento();
             try
             {
-                var documentoConAB = documentos.First(doc => doc.Cuerpo.Contains("AB"));
-                var contadorConAB = documentos.Where(doc => doc.Cuerpo.Contains("AB")).Count();
-                string encabezado = "MUESTRO PRIMER DOCUMENTO CON CUERPO QUE CONTIENE AB. TOTAL CUERPO CON AB: " + contadorConAB.ToString();
-                texto = FormatoFunciones.Documentos1(documentoConAB, encabezado);
+                documentoConAB = documentos.First(doc => doc.Cuerpo.Contains("AB"));
             }
             catch (Exception)
             {
 
                 throw;
             }
-            return texto;
+            return documentoConAB;
         }
-        public static string UltimoDocumentoYCantidadConUltimaLetaTituloZ(List<Documento> documentos)
+        public static Documento UltimoDocumento(List<Documento> documentos)
         {
-            string texto = "";
+            var documentoUltimo = new Documento();
             try
             {
-                var contadorConAB = documentos.Where(doc => doc.Cuerpo.Contains("AB")).Count();
-                Documento documentoConAB = new Documento();
-                if (contadorConAB!=0) documentoConAB = documentos.First(doc => doc.Cuerpo.Contains("AB"));
-                string encabezado = "MUESTRO PRIMER DOCUMENTO CON CUERPO QUE CONTIENE AB. TOTAL CUERPO CON AB: " + contadorConAB.ToString();
+                documentoUltimo = documentos.Last();
             }
             catch (Exception)
             {
 
                 throw;
             }
-            return texto;
+            return documentoUltimo;
         }
-        public static string DocuementosOrdenadosPorTituloAlfabeticamente(List<Documento> documentos)
+        public static List<Documento> DocuementosOrdenadosPorTituloAlfabeticamente(List<Documento> documentos)
         {
-            string texto = "";
             try
             {
                 documentos.Sort(Sorting.SortAlfabeticamenteDocumentos.Compare);
-                string encabezado = "ORDENO DOCUMENTOS POR TITULO ALFABETICAMENTE";
-                FormatoFunciones.DocumentosVarios(documentos, encabezado);
             }
             catch (Exception)
             {
 
                 throw;
             }
-            return texto;
+            return documentos;
         }
-        public static string DocumentosConMayusculas(List<Documento> documentos)
+        public static List<Documento> DocumentosConMayusculas(List<Documento> documentos)
         {
-            string texto = "";
+            var documentosConMayusculas = new List<Documento>();
             try
             {
-                var encabezado = "MUESTRO DOCUMENTOS QUE TENGAN POR LO MENOS UNA LETRA EN MAYUSCULA COMO TITULO";
-                var documentosConMayusculas = new List<Documento>();
                 documentosConMayusculas = documentos.FindAll((Documento x) =>
                 {
                     var longitud = x.Titulo.Length - 1;
@@ -193,14 +169,10 @@ namespace ABMDocumentos
                         {
                             documentosConMayusculas.Add(x);
                             longitud = -1;
-                            hayDocumentoConMayuscula = true;
                         }
                         longitud--;
                     } while (longitud >= 0);
-                    if (hayDocumentoConMayuscula == false)
-                    {
-                        encabezado += "\nNO HAY DOCUMENTOS QUE TENGAN POR LO MENOS UNA LETRA EN MAYUSCULA COMO TITULO";
-                    }
+                   
                     return hayDocumentoConMayuscula;
                 });
             }
@@ -209,14 +181,13 @@ namespace ABMDocumentos
 
                 throw;
             }
-            return texto;
+            return documentosConMayusculas;
         }
-        public static string OrdenarFirmantesPorEdad(List<Documento> documentos)
+        public static List<Firmante> FirmantesOrdenadosPorEdad(List<Documento> documentos)
         {
-            string texto = "";
+            var firmantesOrdenados = new List<Firmante>();
             try
             {
-                var firmantesOrdenados = new List<Firmante>();
                 foreach (var documento in documentos)
                 {
                     foreach (var firmante in documento.Firmantes)
@@ -225,15 +196,74 @@ namespace ABMDocumentos
                     }
                 }
                 firmantesOrdenados.Sort(Sorting.SortEdadFirmantes.Compare);
-                string encabezado = "ORDENO FIRMANTES POR EDAD";
-                texto = FormatoFunciones.FirmantesVarios(firmantesOrdenados, encabezado);
             }
             catch (Exception)
             {
 
                 throw;
             }
-            return texto;
+            return firmantesOrdenados;
+        }
+        public static List<Documento> DocumentosConTitulosEnMayuscula(List<Documento> documentos)
+        {
+            var documentosTitulomayuscula = new List<Documento>();
+            try
+            {
+                Func<string, string> ponerTituloMayuscula = (titulo => titulo.ToUpper());
+                foreach (var documento in documentos)
+                {
+                    documento.Titulo = ponerTituloMayuscula(documento.Titulo);
+                    documentosTitulomayuscula.Add(documento);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return documentosTitulomayuscula;
+        }
+        public static List<string> Titulos(List<Documento> documentos)
+        {
+            var titulos = new List<string>();
+            try
+            {
+                Action<Documento> escribirTitulos = (doc => titulos.Add(doc.Titulo));
+                foreach (var titulo in titulos)
+                {
+                    titulos.Add(titulo);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return titulos;
+        }
+        public static List<Documento> DocumentosConFirmantesOrdenadosPorEdad(List<Documento> documentos)
+        {
+            var documentosFirmantesOrdenados = new List<Documento>();
+            try
+            {
+                Func<Documento, Documento> ordenaFirmantes = (documento =>
+                {
+                    documento.Firmantes.Sort(Sorting.SortEdadFirmantes.Compare);
+                    return documento;
+                });
+                foreach (var documento in documentos)
+                {
+                    documentosFirmantesOrdenados.Add(ordenaFirmantes(documento));
+                }
+            }
+            catch (Exception)
+            {
+                var firmantesOrdenados = new List<Firmante>();
+                Action<Firmante> ColocarFirmanteEnLista = firmante => firmantesOrdenados.Add(firmante);
+
+                throw;
+            }
+            return documentosFirmantesOrdenados;
         }
     }
 }
