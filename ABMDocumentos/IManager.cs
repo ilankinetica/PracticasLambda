@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace ABMDocumentos
 {
-    interface IManager
+    public interface IManager
     {
+        void Alta(object obj);
+        void Baja(object obj);
+        void Modificacion(object obj);
+        void Consulta(object obj);
     }
 }
