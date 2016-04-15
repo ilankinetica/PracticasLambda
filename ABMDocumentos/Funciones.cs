@@ -176,5 +176,64 @@ namespace ABMDocumentos
             }
             return texto;
         }
+        public static string DocumentosConMayusculas(List<Documento> documentos)
+        {
+            string texto = "";
+            try
+            {
+                var encabezado = "MUESTRO DOCUMENTOS QUE TENGAN POR LO MENOS UNA LETRA EN MAYUSCULA COMO TITULO";
+                var documentosConMayusculas = new List<Documento>();
+                documentosConMayusculas = documentos.FindAll((Documento x) =>
+                {
+                    var longitud = x.Titulo.Length - 1;
+                    var hayDocumentoConMayuscula = false;
+                    do
+                    {
+                        if (x.Titulo[longitud] == x.Titulo.ToUpper()[longitud])
+                        {
+                            documentosConMayusculas.Add(x);
+                            longitud = -1;
+                            hayDocumentoConMayuscula = true;
+                        }
+                        longitud--;
+                    } while (longitud >= 0);
+                    if (hayDocumentoConMayuscula == false)
+                    {
+                        encabezado += "\nNO HAY DOCUMENTOS QUE TENGAN POR LO MENOS UNA LETRA EN MAYUSCULA COMO TITULO";
+                    }
+                    return hayDocumentoConMayuscula;
+                });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return texto;
+        }
+        public static string OrdenarFirmantesPorEdad(List<Documento> documentos)
+        {
+            string texto = "";
+            try
+            {
+                var firmantesOrdenados = new List<Firmante>();
+                foreach (var documento in documentos)
+                {
+                    foreach (var firmante in documento.Firmantes)
+                    {
+                        firmantesOrdenados.Add(firmante);
+                    }
+                }
+                firmantesOrdenados.Sort(Sorting.SortEdadFirmantes.Compare);
+                string encabezado = "ORDENO FIRMANTES POR EDAD";
+                texto = FormatoFunciones.FirmantesVarios(firmantesOrdenados, encabezado);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return texto;
+        }
     }
 }

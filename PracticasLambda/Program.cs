@@ -88,13 +88,13 @@ namespace PracticasLambda
             EscribeSiFirmanteEdad17();
             EscribePrimerDocumentoConCuerpoConAB();
             EscribeDocumentosOrdenadosTituloAlfabeticamnete();
-            EscribeDocumentosQueContenganMayusculas();
             EscribeOrdenaFirmantesPorEdad();
             EscribeDocumentosTitulosEnMayuscula();
             EscribeTitulos();
             EscribeCualFirmanteEsMayor();
             EscribeFirmantesMasGrandes();
             EscribirUltimoDocumentoConUltimaLetraZ();
+            EscribeDocumentosQueContenganMayusculas();
             Console.ReadLine();
         }
         #region Funciones de escritura en la consola
@@ -378,12 +378,12 @@ namespace PracticasLambda
             {
                 var documentos = GenerarListaDocumentos(10, 1);
                 var documentosConMayusculas = new List<Documento>();
+                var hayDocumentoConMayuscula = false;
                 var encabezado = "MUESTRO DOCUMENTOS QUE TENGAN POR LO MENOS UNA LETRA EN MAYUSCULA COMO TITULO";
                 documentosConMayusculas = documentos.FindAll((Documento x) =>
                 {
                     var longitud = x.Titulo.Length - 1;
-                    var hayDocumentoConMayuscula = false;
-                    while (longitud > 0)
+                    while (longitud >= 0)
                     {
                         if (x.Titulo[longitud] == x.Titulo.ToUpper()[longitud])
                         {

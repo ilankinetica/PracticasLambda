@@ -49,7 +49,7 @@
     <Compile Include="IManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sorting\SortEdadFirmantes.cs" />
-    <Compile Include="Sorting\SortPrimercaracterDocumentos.cs" />
+    <Compile Include="Sorting\SortAlfabeticamenteDocumentos.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
