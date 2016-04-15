@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Administrar base de datos</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+
+    <!-- Funciones -->
+    <script type="text/javascript">
+        $(function () {
+            $("#AccionAdministrar").on("change", function () {
+                console.log($(this).val());
+                switch ($(this).val()) {
+                    case "crearDocumento":
+		                $.get('@Url.Action("CrearDocumento")').success(function (data) {
+		                    $("#partialamostrar").html(data);
+		                });
+		                break;
+                    case "crearFirmante":
+		                $.get('@Url.Action("CrearFirmante")').success(function (data) {
+		                    $("#partialamostrar").html(data);
+		                });
+		                break;
+                    case "eliminarDocumento":
+		                $.get('@Url.Action("EliminarDocumento")').success(function (data) {
+		                    $("#partialamostrar").html(data);
+		                });
+		                break;
+                    case "eliminarFirmante":
+		                $.get('@Url.Action("EliminarFirmante")').success(function (data) {
+		                    $("#partialamostrar").html(data);
+		                });
+                        break;
+                    case "modificarDocumento":
+                        $.get('@Url.Action("ModificarDocumento")').success(function (data) {
+                            $("#partialamostrar").html(data);
+                        });
+                        break;
+                    case "modificarFirmante":
+                        $.get('@Url.Action("ModificarFirmante")').success(function (data) {
+                            $("#partialamostrar").html(data);
+                        });
+                        break;
+                    case "":
+                        $.get('@Url.Action("InformacionDefault")').success(function (data) {
+                            $("#partialamostrar").html(data);
+                        });
+                        break;
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="form-group col-md-12">
+        <label for="AccionAdministrar">Seleccione accion a realizar</label>
+        <select class="form-control" id="AccionAdministrar">
+            <option value=""></option>
+            <option value="crearDocumento">Crear un nuevo documento</option>
+            <option value="crearFirmante">Crear un nuevo firmante para un documento existente</option>
+            <option value="eliminarDocumento">Eliminar un documento</option>
+            <option value="eliminarFirmante">Eliminar un firmante</option>
+            <option value="modificarDocumento">Modificar un documento</option>
+            <option value="modificarFirmante">Modificar un firmante</option>
+        </select>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</body>
+</html>

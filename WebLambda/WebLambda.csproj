@@ -267,8 +267,15 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\administrarUsuarios.cshtml" />
-    <Content Include="Views\Home\realizarConsultas.cshtml" />
+    <Content Include="Views\Home\AdministrarBaseDeDatos.cshtml" />
+    <Content Include="Views\Home\RealizarConsultas.cshtml" />
+    <Content Include="Views\Home\PartialPages\CrearDocumento.cshtml" />
+    <Content Include="Views\Home\PartialPages\CrearFirmante.cshtml" />
+    <Content Include="Views\Home\PartialPages\EliminarDocumento.cshtml" />
+    <Content Include="Views\Home\PartialPages\EliminarFirmante.cshtml" />
+    <Content Include="Views\Home\PartialPages\ModificarDocumento.cshtml" />
+    <Content Include="Views\Home\PartialPages\ModificarFirmante.cshtml" />
+    <Content Include="Views\Home\PartialPages\InformacionDefault.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

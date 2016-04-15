@@ -12,7 +12,42 @@ namespace WebLambda.Controllers
         {
             return View();
         }
-
+        public ActionResult RealizarConsultas()
+        {
+            return View();
+        }
+        public ActionResult AdministrarBaseDeDatos()
+        {
+            return View();
+        }
+        public ActionResult CrearDocumento()
+        {
+            return PartialView("CrearDocumento");
+        }
+        public ActionResult CrearFirmante()
+        {
+            return PartialView("CrearFirmante");
+        }
+        public ActionResult EliminarDocumento()
+        {
+            return PartialView("EliminarDocumento");
+        }
+        public ActionResult EliminarFirmante()
+        {
+            return PartialView("EliminarFirmante");
+        }
+        public ActionResult ModificarDocumento()
+        {
+            return PartialView("ModificarDocumento");
+        }
+        public ActionResult ModificarFirmante()
+        {
+            return PartialView("ModificarFirmante");
+        }
+        public ActionResult InformacionDefault()
+        {
+            return PartialView("InformacionDefault");
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -26,5 +61,6 @@ namespace WebLambda.Controllers
 
             return View();
         }
+       
     }
 }
