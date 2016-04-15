@@ -10,44 +10,99 @@ namespace ABMDocumentos
     {
         string Documentos1(Documento documento)
         {
-            string formateado = "";
+            string resultado = "";
             try
             {
-                formateado += "\n\nDocumento: \nTitulo: " + documento.Titulo + "\nCuerpo: " + documento.Cuerpo + "\nFirmantes: \n";
+                resultado += "\n\nDocumento: \nTitulo: " + documento.Titulo + "\nCuerpo: " + documento.Cuerpo + "\nFirmantes: \n";
                 foreach (var firmante in documento.Firmantes)
                 {
-                    formateado += "\nNombre: " + firmante.Nombre + "\nFirma: " + firmante.Firma + "\nEdad: " + firmante.Edad.ToString() + "\n-----";
+                    resultado += "\nNombre: " + firmante.Nombre + "\nFirma: " + firmante.Firma + "\nEdad: " + firmante.Edad.ToString() + "\n-----";
                 }
-                formateado += "\n----- -----";
+                resultado += "\n----- -----";
             }
             catch (Exception)
             {
-
+                throw new FormatException("Error en el formateo");
             }
-            return formateado;
+            return resultado;
+        }
+        string Documentos1 (Documento documento, string encabezado)
+        {
+            string resultado = "";
+            try
+            {
+                resultado += encabezado + "\n\n";
+                resultado += "\n\nDocumento: \nTitulo: " + documento.Titulo + "\nCuerpo: " + documento.Cuerpo + "\nFirmantes: \n";
+                foreach (var firmante in documento.Firmantes)
+                {
+                    resultado += "\nNombre: " + firmante.Nombre + "\nFirma: " + firmante.Firma + "\nEdad: " + firmante.Edad.ToString() + "\n-----";
+                }
+                resultado += "\n----- -----";
+                resultado += "\n----- ----- -----\n";
+            }
+            catch (Exception)
+            {
+                throw new FormatException("Error en el formateo");
+            }
+            return resultado;
         }
         string DocumentosVarios (List<Documento> documentos, string encabezado)
         {
-            string formateado = "";
+            string resultado = "";
             try
             {
-                formateado += encabezado + "\n\n";
+                resultado += encabezado + "\n\n";
                 foreach (var documento in documentos)
                 {
-                    formateado += "\n\nDocumento: \nTitulo: " + documento.Titulo + "\nCuerpo: " + documento.Cuerpo + "\nFirmantes: \n";
+                    resultado += "\n\nDocumento: \nTitulo: " + documento.Titulo + "\nCuerpo: " + documento.Cuerpo + "\nFirmantes: \n";
                     foreach (var firmante in documento.Firmantes)
                     {
-                        formateado += "\nNombre: " + firmante.Nombre + "\nFirma: " + firmante.Firma + "\nEdad: " + firmante.Edad.ToString() + "\n-----";
+                        resultado += "\nNombre: " + firmante.Nombre + "\nFirma: " + firmante.Firma + "\nEdad: " + firmante.Edad.ToString() + "\n-----";
                     }
-                    formateado += "\n----- -----";
+                    resultado += "\n----- -----";
                 }
-                formateado += "\n----- ----- -----\n";
+                resultado += "\n----- ----- -----\n";
             }
             catch (Exception)
             {
-
+                throw new FormatException("Error en el formate");
             }
-            return formateado;
+            return resultado;
+        }
+        string Firmante1 (Firmante firmante, string encabezado)
+        {
+            string resultado = "";
+            try
+            {
+                resultado += encabezado + "\n\n";
+                resultado += "\nFirmante: \nNombre: " + firmante.Nombre + "\nFirma: " + firmante.Firma + "\nEdad: " + firmante.Edad.ToString();
+                resultado += "\n----- -----";
+                resultado += "\n----- ----- -----\n";
+            }
+            catch (Exception)
+            {
+                throw new FormatException("Error en el formate");
+            }
+            return resultado;
+        }
+        string FirmantesVarios(List<Firmante> firmantes, string encabezado)
+        {
+            string resultado = "";
+            try
+            {
+                resultado += encabezado + "\n\n";
+                foreach (var firmante in firmantes)
+                {
+                    resultado += "\nFirmante: \nNombre: " + firmante.Nombre + "\nFirma: " + firmante.Firma + "\nEdad: " + firmante.Edad.ToString();
+                    resultado += "\n----- -----";
+                }
+                resultado += "\n----- ----- -----\n";
+            }
+            catch (Exception)
+            {
+                throw new FormatException("Error en el formate");
+            }
+            return resultado;
         }
     }
 }
