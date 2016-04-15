@@ -88,13 +88,13 @@ namespace PracticasLambda
             EscribeSiFirmanteEdad17();
             EscribePrimerDocumentoConCuerpoConAB();
             EscribeDocumentosOrdenadosTituloAlfabeticamnete();
-            EscribirUltimoDocumentoConUltimaLetraZ();
             EscribeDocumentosQueContenganMayusculas();
             EscribeOrdenaFirmantesPorEdad();
             EscribeDocumentosTitulosEnMayuscula();
             EscribeTitulos();
             EscribeCualFirmanteEsMayor();
             EscribeFirmantesMasGrandes();
+            EscribirUltimoDocumentoConUltimaLetraZ();
             Console.ReadLine();
         }
         #region Funciones de escritura en la consola
