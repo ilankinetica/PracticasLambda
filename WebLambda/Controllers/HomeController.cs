@@ -9,12 +9,18 @@ namespace WebLambda.Controllers
 {
     public class HomeController : Controller
     {
-        Firmante _firmante = new Firmante { Edad = 10, Nombre = "Carlos", Firma = "carlitos"};
+        Firmante _firmante = new Firmante { Edad = 10, Nombre = "Carlos", Firma = "carlitos" };
         List<Firmante> listafirmante = new List<Firmante>();
         Documento _documento = new Documento { Titulo = "GRan documento", Cuerpo = "Que interesante documento" };
         public ActionResult Index()
         {
             return View();
+        }
+        [HttpPost]
+        public ActionResult insertarFirmanteEnBDD()
+        {
+           
+            return RedirectToAction("Index");
         }
         public ActionResult RealizarConsultas()
         {
@@ -23,10 +29,6 @@ namespace WebLambda.Controllers
         public ActionResult AdministrarBaseDeDatos()
         {
             return View();
-        }
-        public ActionResult AVER()
-        {
-            return PartialView("AVER");
         }
         public ActionResult CrearDocumento()
         {
@@ -69,6 +71,6 @@ namespace WebLambda.Controllers
 
             return View();
         }
-       
+
     }
 }

@@ -1,8 +1,16 @@
-﻿@model ABMDocumentos.Firmante
-<div>
-    <p>Hola</p>
-    <p>Nombre: @Model.Nombre</p>
-    <p>Firma: @Model.Firma</p>
-    <p>Edad: @Model.Edad</p>
+﻿<div>
+    <h2>Crear un nuevo firmante</h2>
+    <form method="POST" action="insertarFirmanteEnBDD">
+        <label for="Nombre">Nombre:</label>
+        <input type="text" name="Nombre" />
+        <br />
+        <label for="Firma">Firma:</label>
+        <input type="text" name="Firma" />
+        <br />
+        <label for="Edad">Edad:</label>
+        <input type="number" max="120" min="18" name="Edad" />
+        <br />
+        <input type="submit" value="Enviar" />
+    </form>
 </div>
 
