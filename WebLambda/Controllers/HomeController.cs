@@ -10,7 +10,8 @@ namespace WebLambda.Controllers
     public class HomeController : Controller
     {
         Firmante _firmante = new Firmante { Edad = 10, Nombre = "Carlos", Firma = "carlitos"};
-       
+        List<Firmante> listafirmante = new List<Firmante>();
+        Documento _documento = new Documento { Titulo = "GRan documento", Cuerpo = "Que interesante documento" };
         public ActionResult Index()
         {
             return View();
@@ -23,13 +24,17 @@ namespace WebLambda.Controllers
         {
             return View();
         }
+        public ActionResult AVER()
+        {
+            return PartialView("AVER");
+        }
         public ActionResult CrearDocumento()
         {
-            return PartialView("CrearDocumento");
+            return PartialView("CrearDocumento", _documento);
         }
         public ActionResult CrearFirmante()
         {
-            return PartialView("CrearFirmante",_firmante);
+            return PartialView("CrearFirmante", _firmante);
         }
         public ActionResult EliminarDocumento()
         {

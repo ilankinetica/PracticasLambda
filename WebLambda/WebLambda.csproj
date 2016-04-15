@@ -269,13 +269,13 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\AdministrarBaseDeDatos.cshtml" />
     <Content Include="Views\Home\RealizarConsultas.cshtml" />
-    <Content Include="Views\Home\PartialPages\CrearDocumento.cshtml" />
-    <Content Include="Views\Home\PartialPages\CrearFirmante.cshtml" />
-    <Content Include="Views\Home\PartialPages\EliminarDocumento.cshtml" />
-    <Content Include="Views\Home\PartialPages\EliminarFirmante.cshtml" />
-    <Content Include="Views\Home\PartialPages\ModificarDocumento.cshtml" />
-    <Content Include="Views\Home\PartialPages\ModificarFirmante.cshtml" />
-    <Content Include="Views\Home\PartialPages\InformacionDefault.cshtml" />
+    <Content Include="Views\Home\CrearDocumento.cshtml" />
+    <Content Include="Views\Home\CrearFirmante.cshtml" />
+    <Content Include="Views\Home\EliminarDocumento.cshtml" />
+    <Content Include="Views\Home\EliminarFirmante.cshtml" />
+    <Content Include="Views\Home\ModificarDocumento.cshtml" />
+    <Content Include="Views\Home\ModificarFirmante.cshtml" />
+    <Content Include="Views\Home\InformacionDefault.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
