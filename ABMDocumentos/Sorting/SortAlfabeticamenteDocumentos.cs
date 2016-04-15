@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ABMDocumentos.Sorting
 {
-    public static class SortAlfabeticamenteDocumentos : IComparer<Documento>
+    public class SortAlfabeticamenteDocumentos /*: IComparer<Documento>*/
     {
-        public static int Compare(Documento x, Documento y)
+       /* public int Compare(Documento x, Documento y)
         {
             if (x.Titulo == y.Titulo)
             {
@@ -38,6 +34,6 @@ namespace ABMDocumentos.Sorting
             if (lengthX >= lengthY) return 1;
             else if (lengthX < lengthY) return -1;
             else return 0;
-        }
+        }*/
     }
 }

@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ABMDocumentos;
 
 namespace WebLambda.Controllers
 {
     public class HomeController : Controller
     {
+        Firmante _firmante = new Firmante { Edad = 10, Nombre = "Carlos", Firma = "carlitos"};
+       
         public ActionResult Index()
         {
             return View();
@@ -26,7 +29,7 @@ namespace WebLambda.Controllers
         }
         public ActionResult CrearFirmante()
         {
-            return PartialView("CrearFirmante");
+            return PartialView("CrearFirmante",_firmante);
         }
         public ActionResult EliminarDocumento()
         {

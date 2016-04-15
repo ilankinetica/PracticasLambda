@@ -288,6 +288,16 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ABMDocumentos\ABMDocumentos.csproj">
+      <Project>{ae989456-8233-450d-9db2-0a0f69a38c41}</Project>
+      <Name>ABMDocumentos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BaseDeDatos\BaseDeDatos.sqlproj">
+      <Project>{d0ef969e-38eb-4c5f-8412-1ecb1b5e88f6}</Project>
+      <Name>BaseDeDatos</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

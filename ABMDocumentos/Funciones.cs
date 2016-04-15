@@ -141,11 +141,11 @@ namespace ABMDocumentos
             }
             return documentoUltimo;
         }
-        public static List<Documento> DocuementosOrdenadosPorTituloAlfabeticamente(List<Documento> documentos)
+       /* public static List<Documento> DocuementosOrdenadosPorTituloAlfabeticamente(List<Documento> documentos)
         {
             try
             {
-                documentos.Sort(Sorting.SortAlfabeticamenteDocumentos.Compare);
+                //documentos.Sort(Sorting.SortAlfabeticamenteDocumentos.Compare);
             }
             catch (Exception)
             {
@@ -153,7 +153,7 @@ namespace ABMDocumentos
                 throw;
             }
             return documentos;
-        }
+        }*/
         public static List<Documento> DocumentosConMayusculas(List<Documento> documentos)
         {
             var documentosConMayusculas = new List<Documento>();
@@ -183,7 +183,7 @@ namespace ABMDocumentos
             }
             return documentosConMayusculas;
         }
-        public static List<Firmante> FirmantesOrdenadosPorEdad(List<Documento> documentos)
+       /* public static List<Firmante> FirmantesOrdenadosPorEdad(List<Documento> documentos)
         {
             var firmantesOrdenados = new List<Firmante>();
             try
@@ -203,7 +203,7 @@ namespace ABMDocumentos
                 throw;
             }
             return firmantesOrdenados;
-        }
+        }*/
         public static List<Documento> DocumentosConTitulosEnMayuscula(List<Documento> documentos)
         {
             var documentosTitulomayuscula = new List<Documento>();
@@ -241,7 +241,7 @@ namespace ABMDocumentos
             }
             return titulos;
         }
-        public static List<Documento> DocumentosConFirmantesOrdenadosPorEdad(List<Documento> documentos)
+      /*  public static List<Documento> DocumentosConFirmantesOrdenadosPorEdad(List<Documento> documentos)
         {
             var documentosFirmantesOrdenados = new List<Documento>();
             try
@@ -264,6 +264,6 @@ namespace ABMDocumentos
                 throw;
             }
             return documentosFirmantesOrdenados;
-        }
+        }*/
     }
 }

@@ -8,6 +8,6 @@ namespace ABMDocumentos
 {
     class FormatoException : ApplicationException
     {
-        public FormatoException(string message) : base (message9{ }
+        public FormatoException(string message) : base (message){ }
     }
 }
