@@ -8,7 +8,7 @@ namespace ABMDocumentos
 {
     public static class FormatoFunciones
     {
-        static string Documentos1(Documento documento)
+        public static string Documentos1(Documento documento)
         {
             string resultado = "";
             try
@@ -26,7 +26,7 @@ namespace ABMDocumentos
             }
             return resultado;
         }
-        static string Documentos1 (Documento documento, string encabezado)
+        public static string Documentos1 (Documento documento, string encabezado)
         {
             string resultado = "";
             try
@@ -46,7 +46,7 @@ namespace ABMDocumentos
             }
             return resultado;
         }
-        static string DocumentosVarios (List<Documento> documentos, string encabezado)
+        public static string DocumentosVarios (List<Documento> documentos, string encabezado)
         {
             string resultado = "";
             try
@@ -69,7 +69,7 @@ namespace ABMDocumentos
             }
             return resultado;
         }
-        static string Firmante1 (Firmante firmante, string encabezado)
+        public static string Firmante1 (Firmante firmante, string encabezado)
         {
             string resultado = "";
             try
@@ -85,7 +85,7 @@ namespace ABMDocumentos
             }
             return resultado;
         }
-        static string FirmantesVarios(List<Firmante> firmantes, string encabezado)
+        public static string FirmantesVarios(List<Firmante> firmantes, string encabezado)
         {
             string resultado = "";
             try
