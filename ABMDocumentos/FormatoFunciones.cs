@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ABMDocumentos
 {
-    public class FormatoFunciones
+    public static class FormatoFunciones
     {
-        string Documentos1(Documento documento)
+        static string Documentos1(Documento documento)
         {
             string resultado = "";
             try
@@ -26,7 +26,7 @@ namespace ABMDocumentos
             }
             return resultado;
         }
-        string Documentos1 (Documento documento, string encabezado)
+        static string Documentos1 (Documento documento, string encabezado)
         {
             string resultado = "";
             try
@@ -46,7 +46,7 @@ namespace ABMDocumentos
             }
             return resultado;
         }
-        string DocumentosVarios (List<Documento> documentos, string encabezado)
+        static string DocumentosVarios (List<Documento> documentos, string encabezado)
         {
             string resultado = "";
             try
@@ -69,7 +69,7 @@ namespace ABMDocumentos
             }
             return resultado;
         }
-        string Firmante1 (Firmante firmante, string encabezado)
+        static string Firmante1 (Firmante firmante, string encabezado)
         {
             string resultado = "";
             try
@@ -85,7 +85,7 @@ namespace ABMDocumentos
             }
             return resultado;
         }
-        string FirmantesVarios(List<Firmante> firmantes, string encabezado)
+        static string FirmantesVarios(List<Firmante> firmantes, string encabezado)
         {
             string resultado = "";
             try
