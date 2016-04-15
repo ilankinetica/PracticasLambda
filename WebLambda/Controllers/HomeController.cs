@@ -22,6 +22,12 @@ namespace WebLambda.Controllers
            
             return RedirectToAction("Index");
         }
+        [HttpPost]
+        public ActionResult insertarDocumentoEnBDD()
+        {
+
+            return RedirectToAction("Index");
+        }
         public ActionResult RealizarConsultas()
         {
             return View();
@@ -32,7 +38,7 @@ namespace WebLambda.Controllers
         }
         public ActionResult CrearDocumento()
         {
-            return PartialView("CrearDocumento", _documento);
+            return PartialView("CrearDocumento", listafirmante);
         }
         public ActionResult CrearFirmante()
         {

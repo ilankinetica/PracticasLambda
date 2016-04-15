@@ -1,3 +1,37 @@
-﻿<div>
-  <h2>Crear un nuevo documento</h2>
+﻿<!-- jQuery -->
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<div>
+    <h2>Crear un nuevo documento</h2>
+    <form method="POST" action="insertarDocumentoEnBDD">
+        <label for="Titulo">Titulo:</label>
+        <input type="text" name="Titulo" />
+        <br />
+        <label for="Cuerpo">Cuerpo:</label>
+        <input type="text" name="Cuerpo" />
+        <br />
+        <br />
+        <label for="NumeroFirmantes">Seleccione numero de firmantes a agregar:</label>
+        <input type="number" max="120" min="1" id="NumeroFirmantes" name="NumeroFirmantes" />
+        <div id="Firmantes">
+
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $("#NumeroFirmantes").on("change", function () {
+                    var cantidadFirmantes = $("#NumeroFirmantes").val();
+                    for (var i = 0; i < cantidadFirmantes; i++) {
+                        
+                        $.get('@Url.Action("DatosFirmante")').success(function (data) {
+                            $("#Firmantes").html(data);
+                        });
+                    }
+                });
+            });
+        </script>
+        <input type="submit" value="Enviar" />
+    </form>
 </div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
