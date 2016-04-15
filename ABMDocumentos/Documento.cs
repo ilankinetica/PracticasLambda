@@ -8,6 +8,7 @@ namespace ABMDocumentos
 {
     public class Documento
     {
+        public int Id { get; private set; }
         public string Titulo { get; set; }
         public string Cuerpo { get; set; }
         public List<Firmante> Firmantes { get; set; }
