@@ -10,22 +10,18 @@ namespace ABMDocumentos
     {
         public void Alta(object doc)
         {
-            throw new NotImplementedException();
         }
 
         public void Baja(object doc)
         {
-            throw new NotImplementedException();
         }
 
         public void Consulta(object doc)
         {
-            throw new NotImplementedException();
         }
 
         public void Modificacion(object doc)
         {
-            throw new NotImplementedException();
         }
     }
 }
