@@ -143,6 +143,38 @@ namespace ABMDocumentos
             }
             return texto;
         }
+        public static string UltimoDocumentoYCantidadConUltimaLetaTituloZ(List<Documento> documentos)
+        {
+            string texto = "";
+            try
+            {
+                var contadorConAB = documentos.Where(doc => doc.Cuerpo.Contains("AB")).Count();
+                Documento documentoConAB = new Documento();
+                if (contadorConAB!=0) documentoConAB = documentos.First(doc => doc.Cuerpo.Contains("AB"));
+                string encabezado = "MUESTRO PRIMER DOCUMENTO CON CUERPO QUE CONTIENE AB. TOTAL CUERPO CON AB: " + contadorConAB.ToString();
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
+            return texto;
+        }
+        public static string DocuementosOrdenadosPorTituloAlfabeticamente(List<Documento> documentos)
+        {
+            string texto = "";
+            try
+            {
+                documentos.Sort(Sorting.SortAlfabeticamenteDocumentos.Compare);
+                string encabezado = "ORDENO DOCUMENTOS POR TITULO ALFABETICAMENTE";
+                FormatoFunciones.DocumentosVarios(documentos, encabezado);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return texto;
+        }
     }
 }

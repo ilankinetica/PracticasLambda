@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ABMDocumentos.Sorting
 {
-    public class SortPrimercaracterDocumentos : IComparer<Documento>
+    public static class SortAlfabeticamenteDocumentos : IComparer<Documento>
     {
-        public int Compare(Documento x, Documento y)
+        public static int Compare(Documento x, Documento y)
         {
             if (x.Titulo == y.Titulo)
             {
