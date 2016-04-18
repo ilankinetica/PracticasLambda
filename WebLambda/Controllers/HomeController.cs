@@ -38,27 +38,31 @@ namespace WebLambda.Controllers
         }
         public ActionResult CrearDocumento()
         {
-            return PartialView("CrearDocumento", listafirmante);
+            return PartialView("Alta/CrearDocumento", listafirmante);
         }
         public ActionResult CrearFirmante()
         {
-            return PartialView("CrearFirmante", _firmante);
+            return PartialView("Alta/CrearFirmante", _firmante);
         }
         public ActionResult EliminarDocumento()
         {
-            return PartialView("EliminarDocumento");
+            return PartialView("Baja/EliminarDocumento");
         }
         public ActionResult EliminarFirmante()
         {
-            return PartialView("EliminarFirmante");
+            return PartialView("Baja/EliminarFirmante");
         }
         public ActionResult ModificarDocumento()
         {
-            return PartialView("ModificarDocumento");
+            return PartialView("Modifcacion/ModificarDocumento");
         }
         public ActionResult ModificarFirmante()
         {
-            return PartialView("ModificarFirmante");
+            return PartialView("Modificacion/ModificarFirmante");
+        }
+        public ActionResult DatosFirmante()
+        {
+            return PartialView("DatosFirmante");
         }
         public ActionResult InformacionDefault()
         {

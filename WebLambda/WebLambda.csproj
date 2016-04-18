@@ -269,12 +269,12 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\AdministrarBaseDeDatos.cshtml" />
     <Content Include="Views\Home\RealizarConsultas.cshtml" />
-    <Content Include="Views\Home\CrearDocumento.cshtml" />
-    <Content Include="Views\Home\CrearFirmante.cshtml" />
-    <Content Include="Views\Home\EliminarDocumento.cshtml" />
-    <Content Include="Views\Home\EliminarFirmante.cshtml" />
-    <Content Include="Views\Home\ModificarDocumento.cshtml" />
-    <Content Include="Views\Home\ModificarFirmante.cshtml" />
+    <Content Include="Views\Home\Alta\CrearDocumento.cshtml" />
+    <Content Include="Views\Home\Alta\CrearFirmante.cshtml" />
+    <Content Include="Views\Home\Baja\EliminarDocumento.cshtml" />
+    <Content Include="Views\Home\Baja\EliminarFirmante.cshtml" />
+    <Content Include="Views\Home\Modificacion\ModificarDocumento.cshtml" />
+    <Content Include="Views\Home\Modificacion\ModificarFirmante.cshtml" />
     <Content Include="Views\Home\InformacionDefault.cshtml" />
     <Content Include="Views\Home\DatosFirmante.cshtml" />
   </ItemGroup>
