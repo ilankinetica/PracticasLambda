@@ -16,11 +16,11 @@ namespace WebLambda.Controllers
             string mostrar = "";
             var bddManager = new BDDManager();
             mostrar += bddManager.Abrir().ToString();
-            var documento = new Documento();
+            /*var documento = new Documento();
             documento.Titulo = "abc";
             documento.Cuerpo = "def";
-            mostrar += bddManager.InsertarDocumento(documento);
-            return Content(mostrar);
+            mostrar += bddManager.InsertarDocumento(documento);*/
+            return RedirectToAction("Home/Index");
         }
     }
 }

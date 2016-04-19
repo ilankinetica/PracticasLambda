@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ABMDocumentos;
+using WebLambda.Models;
 
 namespace WebLambda.Controllers
 {
@@ -19,9 +20,17 @@ namespace WebLambda.Controllers
         [HttpPost]
         public ActionResult insertarFirmanteEnBDD()
         {
-           
+            string mostrar = "";
+            var bddManager = new BDDManager();
+            mostrar += bddManager.Abrir().ToString();
+            var firmante = new Firmante();
+            firmante.Edad = 3;
+            firmante.Firma = "def";
+            firmante.Nombre = "nkldfsg";
+            mostrar += bddManager.InsertarFirmante(firmante);
             return RedirectToAction("Index");
         }
+
         [HttpPost]
         public ActionResult insertarDocumentoEnBDD()
         {
@@ -42,7 +51,7 @@ namespace WebLambda.Controllers
         }
         public ActionResult CrearFirmante()
         {
-            return PartialView("Alta/CrearFirmante", _firmante);
+            return PartialView("Alta/CrearFirmante");
         }
         public ActionResult EliminarDocumento()
         {
